@@ -8,7 +8,7 @@ function App() {
     return(
     <div 
       key={space.id}
-      className="spaces"
+      className={space.class}
       style={{
         position: "absolute",
         marginTop: space.top,

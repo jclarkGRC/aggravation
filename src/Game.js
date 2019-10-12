@@ -27,6 +27,7 @@ class Game extends React.Component {
     this.state = {
       spaces: allSpaces,
       playerOneRoll: 6,
+      previousBall: null,
       currentBall: null,
       currentTarget: null
     }
@@ -40,7 +41,11 @@ class Game extends React.Component {
   playerOneStart = (event) => {
     let currentBall = event.target;
     if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
+      if(this.state.previousBall !== null){
+      this.state.previousBall.classList.remove('highlightBall');
+      }
       currentBall.classList.add('highlightBall');
+      this.setState({previousBall: currentBall});
     }
   }
 

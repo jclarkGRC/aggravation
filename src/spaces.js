@@ -186,48 +186,58 @@ export const spaces = [
     },
     {
         id: 38,
-        top: "263px",
-        left: "759px"
+        top: "697px",
+        left: "263px"
     },
     {
         id: 39,
-        top: "263px",
-        left: "759px"
+        top: "635px",
+        left: "263px"
     },
     {
         id: 40,
-        top: "263px",
-        left: "759px"
+        top: "573px",
+        left: "263px"
     },
     {
         id: 41,
-        top: "263px",
-        left: "759px"
+        top: "511px",
+        left: "263px"
     },
     {
         id: 42,
-        top: "263px",
-        left: "759px"
+        top: "511px",
+        left: "201px"
     },
     {
         id: 43,
-        top: "263px",
-        left: "759px"
+        top: "511px",
+        left: "139px"
     },
     {
         id: 44,
-        top: "263px",
-        left: "759px"
+        top: "511px",
+        left: "77px"
     },
     {
         id: 45,
-        top: "263px",
-        left: "759px"
+        top: "511px",
+        left: "15px"
     },
     {
         id: 46,
-        top: "263px",
-        left: "759px"
+        top: "449px",
+        left: "15px"
+    },
+    {
+        id: 47,
+        top: "387px",
+        left: "15px"
+    },
+    {
+        id: 48,
+        top: "325px",
+        left: "15px"
     }
 ]
 

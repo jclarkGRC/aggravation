@@ -24,6 +24,38 @@ body{
   border: 1px solid darkred;
 }
 
+.greenHome{
+  width: 47px;
+  height: 47px;
+  background-color: darkgreen;
+  border-radius: 25px;
+  border: 1px solid darkred;
+}
+
+.yellowHome{
+  width: 47px;
+  height: 47px;
+  background-color: rgba(173, 173, 22, 0.555);
+  border-radius: 25px;
+  border: 1px solid darkred;
+}
+
+.redHome{
+  width: 47px;
+  height: 47px;
+  background-color: darkred;
+  border-radius: 25px;
+  border: 1px solid darkred;
+}
+
+.blueHome{
+  width: 47px;
+  height: 47px;
+  background-color: darkblue;
+  border-radius: 25px;
+  border: 1px solid darkred;
+}
+
 #middlePostion{
   position: absolute;
   width: 47px;

@@ -3,7 +3,7 @@ export const spaces = [
         id: 1,
         top: "263px",
         left: "15px",
-        class: "spaces"
+        class: "greenHome"
     },
     {
         id: 2,
@@ -75,7 +75,7 @@ export const spaces = [
         id: 13,
         top: "15px",
         left: "511px",
-        class: "spaces"
+        class: "blueHome"
     },
     {
         id: 14,
@@ -147,7 +147,7 @@ export const spaces = [
         id: 25,
         top: "511px",
         left: "759px",
-        class: "spaces"
+        class: "yellowHome"
     },
     {
         id: 26,
@@ -219,7 +219,7 @@ export const spaces = [
         id: 37,
         top: "759px",
         left: "263px",
-        class: "spaces"
+        class: "redHome"
     },
     {
         id: 38,
@@ -289,83 +289,99 @@ export const spaces = [
     },
     {
         id: "g1",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "77px",
+        class: "greenHome"
     },
     {
         id: "g2",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "139px",
+        class: "greenHome"
     },
     {
         id: "g3",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "201px",
+        class: "greenHome"
     },
     {
         id: "g4",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "263px",
+        class: "greenHome"
     },
     {
         id: "b1",
-        top: "325px",
-        left: "15px"
+        top: "77px",
+        left: "387px",
+        class: "blueHome"
     },
     {
         id: "b2",
-        top: "325px",
-        left: "15px"
+        top: "139px",
+        left: "387px",
+        class: "blueHome"
     },
     {
         id: "b3",
-        top: "325px",
-        left: "15px"
+        top: "201px",
+        left: "387px",
+        class: "blueHome"
     },
     {
         id: "b4",
-        top: "325px",
-        left: "15px"
+        top: "263px",
+        left: "387px",
+        class: "blueHome"
     },
     {
         id: "r1",
-        top: "325px",
-        left: "15px"
+        top: "697px",
+        left: "387px",
+        class: "redHome"
     },
     {
         id: "r2",
-        top: "325px",
-        left: "15px"
+        top: "635px",
+        left: "387px",
+        class: "redHome"
     },
     {
         id: "r3",
-        top: "325px",
-        left: "15px"
+        top: "573px",
+        left: "387px",
+        class: "redHome"
     },
     {
         id: "r4",
-        top: "325px",
-        left: "15px"
+        top: "511px",
+        left: "387px",
+        class: "redHome"
     },
     {
         id: "y1",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "697px",
+        class: "yellowHome"
     },
     {
         id: "y2",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "635px",
+        class: "yellowHome"
     },
     {
         id: "y3",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "573px",
+        class: "yellowHome"
     },
     {
         id: "y4",
-        top: "325px",
-        left: "15px"
+        top: "387px",
+        left: "511px",
+        class: "yellowHome"
     }
 ]
 

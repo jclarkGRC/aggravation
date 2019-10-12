@@ -15,7 +15,6 @@ function App() {
         marginLeft: space.left
       }}
     >
-      {space.id}
     </div>
     )
   })

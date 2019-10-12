@@ -8,8 +8,9 @@ export default class Dice extends React.Component {
     return (
       <div>
         <ReactDice
+          id={this.props.id}
           numDice={1}
-          rollDone={this.rollDoneCallback}
+          rollDone={this.props.rollDoneCallback}
           ref={dice => this.reactDice = dice}
           faceColor={this.props.color}
         />
@@ -21,7 +22,4 @@ export default class Dice extends React.Component {
     this.reactDice.rollAll()
   }
  
-  rollDoneCallback(num) {
-    console.log(`You rolled a ${num}`)
-  }
 }

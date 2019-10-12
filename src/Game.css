@@ -2,7 +2,7 @@ body{
   background-image: url(./img/Kurumi-Table-Top-top.jpg);
 }
 
-.Game {
+.GameBoard {
   position: absolute;
   text-align: center;
   background:  #654321;

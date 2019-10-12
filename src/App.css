@@ -16,6 +16,14 @@ body{
   border-radius: 15px;
 }
 
+.spaces{
+  width: 47px;
+  height: 47px;
+  background-color: #DEB887;
+  border-radius: 25px;
+  border: 1px solid darkred;
+}
+
 #middlePostion{
   position: absolute;
   width: 47px;

@@ -225,4 +225,28 @@ body{
   height: 47px;
 }
 
+#greenDice{
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 200px;
+}
+
+#blueDice{
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 1500px;
+}
+
+#redDice{
+  position: absolute;
+  margin-top: 700px;
+  margin-left: 200px;
+}
+
+#yellowDice{
+  position: absolute;
+  margin-left: 1500px;
+  margin-top: 700px;
+}
+
 

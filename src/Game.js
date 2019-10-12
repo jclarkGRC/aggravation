@@ -22,6 +22,26 @@ function Game() {
 
   return (
     <div className="Table">
+      <div id="greenDice">
+        <Dice 
+          color="green"
+        />
+      </div>
+      <div id="redDice">
+        <Dice 
+          color="red"
+        />
+      </div>
+      <div id="blueDice">
+        <Dice 
+          color="blue"
+        />
+      </div>
+      <div id="yellowDice">
+        <Dice 
+          color="yellow"
+        />
+      </div>
       <div className="Game">
         {/* starting spaces */}
         <div id="playerOneStart">

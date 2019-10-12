@@ -9,7 +9,13 @@ function App() {
     <div 
       key={space.id}
       className="spaces"
+      style={{
+        position: "absolute",
+        marginTop: space.top,
+        marginLeft: space.left
+      }}
     >
+      {space.id}
     </div>
     )
   })

@@ -45,6 +45,7 @@ class Game extends React.Component {
   playerOneStart = (event) => {
     let currentBall = event.target;
     if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
+      this.setState({playerOneFirstMove: true});
       if(this.state.count === 0){
         currentBall.classList.add('highlightBall');
         this.setState({previousBall: currentBall});
@@ -66,23 +67,26 @@ class Game extends React.Component {
     let currentBall = event.target;
     if(this.state.count === 0){
       currentBall.classList.add('highlightBall');
+      this.setState({playerOneFirstMove: false});
       this.setState({previousBall: currentBall});
       this.setState({count: 1});
     }
     if(this.state.count === 1){
       let confirmation = window.confirm("Would you like to make this move?");
-      if(confirmation && this.state.playerOneFirstMove){
+      if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome')){
         this.state.previousBall.classList.remove('playerOneBallStart');
         this.state.previousBall.classList.remove('highlightBall');
         this.state.previousBall.classList.add('greenHome');
         currentBall.classList.add('playerOneBall');
         this.setState({count: 0, playerOneFirstMove: false});
       }
-      if(confirmation){
+      else if(confirmation && !this.state.playerOneFirstMove){
         this.state.previousBall.classList.remove('playerOneBall');
         this.state.previousBall.classList.remove('highlightBall');
         currentBall.classList.add('playerOneBall');
         this.setState({count: 0});
+      }else{
+        alert('You cant move here');
       }
     }
   }

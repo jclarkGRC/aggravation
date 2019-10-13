@@ -26,26 +26,37 @@ class Game extends React.Component {
 
     this.state = {
       spaces: allSpaces,
-      playerOneRoll: null,
+      playerRoll: null,
       playerOneFirstMove: true,
-      playerTwoRoll: null,
-      playerThreeRoll: null,
-      playerFourRoll: null,
+      playerTwoFirstMove: true,
+      playerThreeFirstMove: true,
+      playerFourFirstMove: true,
       previousBall: null,
       currentBall: null,
-      currentTarget: null,
       count: 0
     }
   }
   
-  rollGreenDice = (num) => {
-    this.setState({playerOneRoll: num});
+  rollDice = (num) => {
+    this.setState({playerRoll: num});
   }
 
-  playerOneStart = (event) => {
+  playerStart = (event) => {
     let currentBall = event.target;
-    if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
-      this.setState({playerOneFirstMove: true});
+    console.log(currentBall);
+    if(this.state.playerRoll === 6 || this.state.playerRoll === 1){
+      if(currentBall.classList.contains('playerOneBallStart')){
+        this.setState({playerOneFirstMove: true});
+      }
+      if(currentBall.classList.contains('playerTwoBallStart')){
+        this.setState({playerTwoFirstMove: true});
+      }
+      if(currentBall.classList.contains('playerThreeBallStart')){
+        this.setState({playerThreeFirstMove: true});
+      }
+      if(currentBall.classList.contains('playerFourBallStart')){
+        this.setState({playerFourFirstMove: true});
+      }
       if(this.state.count === 0){
         currentBall.classList.add('highlightBall');
         this.setState({previousBall: currentBall});
@@ -65,89 +76,168 @@ class Game extends React.Component {
 
   moveAroundBoard = (event) => {
     let currentBall = event.target;
-    if(this.state.count === 0){
-      currentBall.classList.add('highlightBall');
-      this.setState({playerOneFirstMove: false});
-      this.setState({previousBall: currentBall});
-      this.setState({count: 1});
-    }
-    if(this.state.count === 1){
-      let confirmation = window.confirm("Would you like to make this move?");
-      if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome')){
-        this.state.previousBall.classList.remove('playerOneBallStart');
-        this.state.previousBall.classList.remove('highlightBall');
-        this.state.previousBall.classList.add('greenHome');
-        currentBall.classList.add('playerOneBall');
-        this.setState({count: 0, playerOneFirstMove: false});
+    if(this.state.previousBall.classList.contains('playerOneBallStart')|| this.state.previousBall.classList.contains('playerOneBall') || currentBall.classList.contains('playerOneBall')){
+      if(this.state.count === 0){
+        currentBall.classList.add('highlightBall');
+        this.setState({playerOneFirstMove: false});
+        this.setState({previousBall: currentBall});
+        this.setState({count: 1});
       }
-      else if(confirmation && !this.state.playerOneFirstMove){
-        this.state.previousBall.classList.remove('playerOneBall');
-        this.state.previousBall.classList.remove('highlightBall');
-        currentBall.classList.add('playerOneBall');
-        this.setState({count: 0});
-      }else{
-        alert('You cant move here');
+      if(this.state.count === 1){
+        let confirmation = window.confirm("Would you like to make this move?");
+        if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome')){
+          this.state.previousBall.classList.remove('playerOneBallStart');
+          this.state.previousBall.classList.remove('highlightBall');
+          this.state.previousBall.classList.add('greenHome');
+          currentBall.classList.add('playerOneBall');
+          this.setState({count: 0, playerOneFirstMove: false});
+        }
+        else if(confirmation && !this.state.playerOneFirstMove){
+          this.state.previousBall.classList.remove('playerOneBall');
+          this.state.previousBall.classList.remove('highlightBall');
+          currentBall.classList.add('playerOneBall');
+          this.setState({count: 0});
+        }else{
+          alert('You cant move here');
+        }
+      }
+    }
+    if(this.state.previousBall.classList.contains('playerTwoBallStart')|| this.state.previousBall.classList.contains('playerTwoBall') || currentBall.classList.contains('playerTwoBall')){
+      if(this.state.count === 0){
+        currentBall.classList.add('highlightBall');
+        this.setState({playerTwoFirstMove: false});
+        this.setState({previousBall: currentBall});
+        this.setState({count: 1});
+      }
+      if(this.state.count === 1){
+        let confirmation = window.confirm("Would you like to make this move?");
+        if(confirmation && this.state.playerTwoFirstMove && currentBall.classList.contains('blueHome')){
+          this.state.previousBall.classList.remove('playerTwoBallStart');
+          this.state.previousBall.classList.remove('highlightBall');
+          this.state.previousBall.classList.add('blueHome');
+          currentBall.classList.add('playerTwoBall');
+          this.setState({count: 0, playerTwoFirstMove: false});
+        }
+        else if(confirmation && !this.state.playerTwoFirstMove){
+          this.state.previousBall.classList.remove('playerTwoBall');
+          this.state.previousBall.classList.remove('highlightBall');
+          currentBall.classList.add('playerTwoBall');
+          this.setState({count: 0});
+        }else{
+          alert('You cant move here');
+        }
+      }
+    }
+    if(this.state.previousBall.classList.contains('playerThreeBallStart')|| this.state.previousBall.classList.contains('playerThreeBall') || currentBall.classList.contains('playerThreeBall')){
+      if(this.state.count === 0){
+        currentBall.classList.add('highlightBall');
+        this.setState({playerThreeFirstMove: false});
+        this.setState({previousBall: currentBall});
+        this.setState({count: 1});
+      }
+      if(this.state.count === 1){
+        let confirmation = window.confirm("Would you like to make this move?");
+        if(confirmation && this.state.playerThreeFirstMove && currentBall.classList.contains('redHome')){
+          this.state.previousBall.classList.remove('playerThreeBallStart');
+          this.state.previousBall.classList.remove('highlightBall');
+          this.state.previousBall.classList.add('redHome');
+          currentBall.classList.add('playerThreeBall');
+          this.setState({count: 0, playerOneFirstMove: false});
+        }
+        else if(confirmation && !this.state.playerThreeFirstMove){
+          this.state.previousBall.classList.remove('playerThreeBall');
+          this.state.previousBall.classList.remove('highlightBall');
+          currentBall.classList.add('playerThreeBall');
+          this.setState({count: 0});
+        }else{
+          alert('You cant move here');
+        }
+      }
+    }
+    if(this.state.previousBall.classList.contains('playerFourBallStart')|| this.state.previousBall.classList.contains('playerFourBall') || currentBall.classList.contains('playerFourBall')){
+      if(this.state.count === 0){
+        currentBall.classList.add('highlightBall');
+        this.setState({playerFourFirstMove: false});
+        this.setState({previousBall: currentBall});
+        this.setState({count: 1});
+      }
+      if(this.state.count === 1){
+        let confirmation = window.confirm("Would you like to make this move?");
+        if(confirmation && this.state.playerFourFirstMove && currentBall.classList.contains('yellowHome')){
+          this.state.previousBall.classList.remove('playerFourBallStart');
+          this.state.previousBall.classList.remove('highlightBall');
+          this.state.previousBall.classList.add('yellowHome');
+          currentBall.classList.add('playerFourBall');
+          this.setState({count: 0, playerFourFirstMove: false});
+        }
+        else if(confirmation && !this.state.playerFourFirstMove){
+          this.state.previousBall.classList.remove('playerFourBall');
+          this.state.previousBall.classList.remove('highlightBall');
+          currentBall.classList.add('playerFourBall');
+          this.setState({count: 0});
+        }else{
+          alert('You cant move here');
+        }
       }
     }
   }
 
   render(){
-
     return (
       <div className="Table">
         <div id="greenDice">
           <Dice 
             id="greenDice"
             color="green"
-            rollDoneCallback={this.rollGreenDice}
+            rollDoneCallback={this.rollDice}
           />
         </div>
         <div id="redDice">
           <Dice 
             id="redDice"
             color="red"
-            rollDoneCallback={this.rollDoneCallback}
+            rollDoneCallback={this.rollDice}
           />
         </div>
         <div id="blueDice">
           <Dice 
             id="blueDice"
             color="blue"
-            rollDoneCallback={this.rollDoneCallback}
+            rollDoneCallback={this.rollDice}
           />
         </div>
         <div id="yellowDice">
           <Dice 
             id="yellowDice"
             color="yellow"
-            rollDoneCallback={this.rollDoneCallback}
+            rollDoneCallback={this.rollDice}
           />
         </div>
         <div className="GameBoard">
           {/* starting spaces */}
           <div id="playerOneStart">
-            <div id="playerOneBallOne" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallTwo" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallThree"className="playerOneBallStart" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
+            <div id="playerOneBallOne" className="playerOneBallStart" onClick={this.playerStart} ></div>
+            <div id="playerOneBallTwo" className="playerOneBallStart" onClick={this.playerStart} ></div>
+            <div id="playerOneBallThree"className="playerOneBallStart" onClick={this.playerStart} ></div>
+            <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerStart} ></div>
           </div>
           <div id="playerTwoStart">
-            <div id="playerTwoBallOne" className="playerTwoBallStart"></div>
-            <div id="playerTwoBallTwo" className="playerTwoBallStart"></div>
-            <div id="playerTwoBallThree"className="playerTwoBallStart"></div>
-            <div id="playerTwoBallFour" className="playerTwoBallStart"></div>
+            <div id="playerTwoBallOne" className="playerTwoBallStart" onClick={this.playerStart}></div>
+            <div id="playerTwoBallTwo" className="playerTwoBallStart" onClick={this.playerStart}></div>
+            <div id="playerTwoBallThree"className="playerTwoBallStart" onClick={this.playerStart}></div>
+            <div id="playerTwoBallFour" className="playerTwoBallStart" onClick={this.playerStart}></div>
           </div>
           <div id="playerThreeStart">
-            <div id="playerThreeBallOne" className="playerThreeBallStart"></div>
-            <div id="playerThreeBallTwo" className="playerThreeBallStart"></div>
-            <div id="playerThreeBallThree"className="playerThreeBallStart"></div>
-            <div id="playerThreeBallFour" className="playerThreeBallStart"></div>
+            <div id="playerThreeBallOne" className="playerThreeBallStart" onClick={this.playerStart}></div>
+            <div id="playerThreeBallTwo" className="playerThreeBallStart" onClick={this.playerStart}></div>
+            <div id="playerThreeBallThree"className="playerThreeBallStart" onClick={this.playerStart}></div>
+            <div id="playerThreeBallFour" className="playerThreeBallStart" onClick={this.playerStart}></div>
           </div>
           <div id="playerFourStart">
-            <div id="playerFourBallOne" className="playerFourBallStart"></div>
-            <div id="playerFourBallTwo" className="playerFourBallStart"></div>
-            <div id="playerFourBallThree"className="playerFourBallStart"></div>
-            <div id="playerFourBallFour" className="playerFourBallStart"></div>
+            <div id="playerFourBallOne" className="playerFourBallStart" onClick={this.playerStart}></div>
+            <div id="playerFourBallTwo" className="playerFourBallStart" onClick={this.playerStart}></div>
+            <div id="playerFourBallThree"className="playerFourBallStart" onClick={this.playerStart}></div>
+            <div id="playerFourBallFour" className="playerFourBallStart" onClick={this.playerStart}></div>
           </div>
           {/* starting spaces end */}
           <div id="middlePostion"></div>

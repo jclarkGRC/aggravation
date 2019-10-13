@@ -27,6 +27,7 @@ class Game extends React.Component {
     this.state = {
       spaces: allSpaces,
       playerOneRoll: null,
+      playerOneFirstMove: true,
       playerTwoRoll: null,
       playerThreeRoll: null,
       playerFourRoll: null,
@@ -44,9 +45,6 @@ class Game extends React.Component {
   playerOneStart = (event) => {
     let currentBall = event.target;
     if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
-      // if(this.state.previousBall !== null && this.state.count > 1){
-      //   this.state.previousBall.classList.remove('highlightBall');
-      // }
       if(this.state.count === 0){
         currentBall.classList.add('highlightBall');
         this.setState({previousBall: currentBall});
@@ -72,24 +70,27 @@ class Game extends React.Component {
       this.setState({count: 1});
     }
     if(this.state.count === 1){
-        if(!currentBall.classList.contains('playerOneBallStart') && currentBall.classList.contains('greenHome')){
-          let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation){
-            this.state.previousBall.classList.remove('playerOneBallStart');
-            this.state.previousBall.classList.remove('highlightBall');
-            this.state.previousBall.classList.add('greenHome');
-            currentBall.classList.add('playerOneBall');
-            this.setState({count: 0});
-          }else{
-            // start over
-            this.setState({count: 0});
-            this.state.previousBall.classList.remove('highlightBall');
-          }
-        }else{
-          this.setState({count: 1});
-          alert("You cannot move here");
-        }
+      let confirmation = window.confirm("Would you like to make this move?");
+      if(confirmation && this.state.playerOneFirstMove){
+        this.state.previousBall.classList.remove('playerOneBallStart');
+        this.state.previousBall.classList.remove('highlightBall');
+        this.state.previousBall.classList.add('greenHome');
+        currentBall.classList.add('playerOneBall');
+        this.setState({count: 0, playerOneFirstMove: false});
       }
+      if(confirmation && this.state.previousBall.classList.contains('greenHome')){
+        this.state.previousBall.classList.remove('playerOneBall');
+        this.state.previousBall.classList.remove('highlightBall');
+        currentBall.classList.add('playerOneBall');
+        this.setState({count: 0});
+      }
+      if(confirmation){
+        this.state.previousBall.classList.remove('playerOneBall');
+        this.state.previousBall.classList.remove('highlightBall');
+        currentBall.classList.add('playerOneBall');
+        this.setState({count: 0});
+      }
+    }
   }
 
   render(){

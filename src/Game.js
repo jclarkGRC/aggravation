@@ -132,22 +132,22 @@ class Game extends React.Component {
             <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
           </div>
           <div id="playerTwoStart">
-            <div id="playerTwoBallOne" className="playerTwoBall"></div>
-            <div id="playerTwoBallTwo" className="playerTwoBall"></div>
-            <div id="playerTwoBallThree"className="playerTwoBall"></div>
-            <div id="playerTwoBallFour" className="playerTwoBall"></div>
+            <div id="playerTwoBallOne" className="playerTwoBallStart"></div>
+            <div id="playerTwoBallTwo" className="playerTwoBallStart"></div>
+            <div id="playerTwoBallThree"className="playerTwoBallStart"></div>
+            <div id="playerTwoBallFour" className="playerTwoBallStart"></div>
           </div>
           <div id="playerThreeStart">
-            <div id="playerThreeBallOne" className="playerThreeBall"></div>
-            <div id="playerThreeBallTwo" className="playerThreeBall"></div>
-            <div id="playerThreeBallThree"className="playerThreeBall"></div>
-            <div id="playerThreeBallFour" className="playerThreeBall"></div>
+            <div id="playerThreeBallOne" className="playerThreeBallStart"></div>
+            <div id="playerThreeBallTwo" className="playerThreeBallStart"></div>
+            <div id="playerThreeBallThree"className="playerThreeBallStart"></div>
+            <div id="playerThreeBallFour" className="playerThreeBallStart"></div>
           </div>
           <div id="playerFourStart">
-            <div id="playerFourBallOne" className="playerFourBall"></div>
-            <div id="playerFourBallTwo" className="playerFourBall"></div>
-            <div id="playerFourBallThree"className="playerFourBall"></div>
-            <div id="playerFourBallFour" className="playerFourBall"></div>
+            <div id="playerFourBallOne" className="playerFourBallStart"></div>
+            <div id="playerFourBallTwo" className="playerFourBallStart"></div>
+            <div id="playerFourBallThree"className="playerFourBallStart"></div>
+            <div id="playerFourBallFour" className="playerFourBallStart"></div>
           </div>
           {/* starting spaces end */}
           <div id="middlePostion"></div>

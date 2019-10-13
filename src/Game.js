@@ -38,7 +38,6 @@ class Game extends React.Component {
   }
   
   rollGreenDice = (num) => {
-    console.log(`You rolled a super ${num}`)
     this.setState({playerOneRoll: num});
   }
 
@@ -50,18 +49,27 @@ class Game extends React.Component {
       }
       if(this.state.count === 0){
         currentBall.classList.add('highlightBall');
+        this.setState({previousBall: currentBall});
         this.setState({count: 1});
       }
       if(this.state.count === 1){
-        if(!currentBall.classList.contains('playerOneBallStart')){
-          currentBall.classList.add('targetSpace');
-          window.confirm("Would you like to make this move?");
+        if(!currentBall.classList.contains('playerOneBallStart') && currentBall.classList.contains('greenHome')){
+          let confirmation = window.confirm("Would you like to make this move?");
+          if(confirmation){
+            this.state.previousBall.classList.remove('playerOneBallStart');
+            this.state.previousBall.classList.remove('highlightBall');
+            this.state.previousBall.classList.add('greenHome');
+            currentBall.classList.add('playerOneBall');
+          }else{
+            // start over
+            this.setState({count: 0});
+            this.state.previousBall.classList.remove('highlightBall');
+          }
         }else{
           this.setState({count: 1});
           alert("You cannot move here");
         }
       }
-      this.setState({previousBall: currentBall});
     }
     else{
       alert("You must roll a 6 or a 1 to start playing!");
@@ -69,8 +77,6 @@ class Game extends React.Component {
   }
 
   render(){
-
-    console.log(this.state);
 
     return (
       <div className="Table">

@@ -78,12 +78,6 @@ class Game extends React.Component {
         currentBall.classList.add('playerOneBall');
         this.setState({count: 0, playerOneFirstMove: false});
       }
-      if(confirmation && this.state.previousBall.classList.contains('greenHome')){
-        this.state.previousBall.classList.remove('playerOneBall');
-        this.state.previousBall.classList.remove('highlightBall');
-        currentBall.classList.add('playerOneBall');
-        this.setState({count: 0});
-      }
       if(confirmation){
         this.state.previousBall.classList.remove('playerOneBall');
         this.state.previousBall.classList.remove('highlightBall');

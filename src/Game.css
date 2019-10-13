@@ -55,6 +55,10 @@ body{
   border: 4px solid whitesmoke;
 }
 
+.targetSpace{
+  border: 4px solid red;
+}
+
 #middlePostion{
   position: absolute;
   width: 47px;
@@ -68,6 +72,11 @@ body{
 }
 
 .playerOneBall{
+  border-radius: 25px;
+  background-color: chartreuse;
+}
+
+.playerOneBallStart{
   border-radius: 25px;
   background-color: chartreuse;
 }

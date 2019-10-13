@@ -26,10 +26,14 @@ class Game extends React.Component {
 
     this.state = {
       spaces: allSpaces,
-      playerOneRoll: 6,
+      playerOneRoll: null,
+      playerTwoRoll: null,
+      playerThreeRoll: null,
+      playerFourRoll: null,
       previousBall: null,
       currentBall: null,
-      currentTarget: null
+      currentTarget: null,
+      count: 0
     }
   }
   
@@ -41,20 +45,32 @@ class Game extends React.Component {
   playerOneStart = (event) => {
     let currentBall = event.target;
     if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
-      if(this.state.previousBall !== null){
-      this.state.previousBall.classList.remove('highlightBall');
+      if(this.state.previousBall !== null && this.state.count > 1){
+        this.state.previousBall.classList.remove('highlightBall');
       }
-      currentBall.classList.add('highlightBall');
+      if(this.state.count === 0){
+        currentBall.classList.add('highlightBall');
+        this.setState({count: 1});
+      }
+      if(this.state.count === 1){
+        if(!currentBall.classList.contains('playerOneBallStart')){
+          currentBall.classList.add('targetSpace');
+          window.confirm("Would you like to make this move?");
+        }else{
+          this.setState({count: 1});
+          alert("You cannot move here");
+        }
+      }
       this.setState({previousBall: currentBall});
+    }
+    else{
+      alert("You must roll a 6 or a 1 to start playing!");
     }
   }
 
-  removeHighlight(event){
-    let currentBall = event.target;
-    currentBall.classList.remove('highlightBall');
-  }
-
   render(){
+
+    console.log(this.state);
 
     return (
       <div className="Table">
@@ -89,10 +105,10 @@ class Game extends React.Component {
         <div className="GameBoard">
           {/* starting spaces */}
           <div id="playerOneStart">
-            <div id="playerOneBallOne" className="playerOneBall" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallTwo" className="playerOneBall" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallThree"className="playerOneBall" onClick={this.playerOneStart} ></div>
-            <div id="playerOneBallFour" className="playerOneBall" onClick={this.playerOneStart} ></div>
+            <div id="playerOneBallOne" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
+            <div id="playerOneBallTwo" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
+            <div id="playerOneBallThree"className="playerOneBallStart" onClick={this.playerOneStart} ></div>
+            <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerOneStart} ></div>
           </div>
           <div id="playerTwoStart">
             <div id="playerTwoBallOne" className="playerTwoBall"></div>

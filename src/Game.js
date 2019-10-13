@@ -18,7 +18,7 @@ class Game extends React.Component {
           marginTop: space.top,
           marginLeft: space.left
         }}
-        onClick={this.playerOneStart}
+        onClick={this.moveAroundBoard}
       >
       </div>
       )
@@ -44,15 +44,34 @@ class Game extends React.Component {
   playerOneStart = (event) => {
     let currentBall = event.target;
     if(this.state.playerOneRoll === 6 || this.state.playerOneRoll === 1){
-      if(this.state.previousBall !== null && this.state.count > 1){
-        this.state.previousBall.classList.remove('highlightBall');
-      }
+      // if(this.state.previousBall !== null && this.state.count > 1){
+      //   this.state.previousBall.classList.remove('highlightBall');
+      // }
       if(this.state.count === 0){
         currentBall.classList.add('highlightBall');
         this.setState({previousBall: currentBall});
         this.setState({count: 1});
+      }else{
+        this.setState({count: 1});
+        alert("You cannot move here");
       }
-      if(this.state.count === 1){
+    }
+    else if(this.state.count === 1){
+      alert("You cannot move here");
+    }
+    else{
+      alert("You must roll a 6 or a 1 to start playing!");
+    }
+  }
+
+  moveAroundBoard = (event) => {
+    let currentBall = event.target;
+    if(this.state.count === 0){
+      currentBall.classList.add('highlightBall');
+      this.setState({previousBall: currentBall});
+      this.setState({count: 1});
+    }
+    if(this.state.count === 1){
         if(!currentBall.classList.contains('playerOneBallStart') && currentBall.classList.contains('greenHome')){
           let confirmation = window.confirm("Would you like to make this move?");
           if(confirmation){
@@ -60,6 +79,7 @@ class Game extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
             currentBall.classList.add('playerOneBall');
+            this.setState({count: 0});
           }else{
             // start over
             this.setState({count: 0});
@@ -70,10 +90,6 @@ class Game extends React.Component {
           alert("You cannot move here");
         }
       }
-    }
-    else{
-      alert("You must roll a 6 or a 1 to start playing!");
-    }
   }
 
   render(){
@@ -135,7 +151,7 @@ class Game extends React.Component {
             <div id="playerFourBallFour" className="playerFourBall"></div>
           </div>
           {/* starting spaces end */}
-          <div id="middlePostion" onClick={this.playerOneStart}></div>
+          <div id="middlePostion"></div>
           {/* spaces begin */}
           {this.state.spaces}
           {/* spaces end */}

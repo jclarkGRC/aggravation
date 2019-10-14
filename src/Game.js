@@ -244,7 +244,7 @@ class Game extends React.Component {
             <div id="playerFourBallFour" className="playerFourBallStart" onClick={this.playerStart}></div>
           </div>
           {/* starting spaces end */}
-          <div id="middlePostion"></div>
+          <div id="middlePostion" className={'spaces'} onClick={this.moveAroundBoard}></div>
           {/* spaces begin */}
           {this.state.spaces}
           {/* spaces end */}

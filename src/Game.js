@@ -1,8 +1,16 @@
 import React from 'react';
 import MainAppBar from './components/MainAppBar';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Game.css';
 import {spaces} from './spaces'
 import Dice from './components/Dice';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {main: '#212121'},
+    type: 'dark'
+  }
+});
 
 class Game extends React.Component {
   
@@ -207,70 +215,71 @@ class Game extends React.Component {
     
   render(){
     return (
-      <div className="Table">
-        <MainAppBar/>
-
-        <div className="GameBoard">
-          {/* starting spaces */}
-          <div id="playerOneStart">
-            <div id="greenDice">
-              <Dice 
-                id="greenDice"
-                color="green"
-                rollDoneCallback={this.rollDice}
-              />
+      <ThemeProvider theme={theme}>
+        <div className="Table">
+          <MainAppBar/>
+          <div className="GameBoard">
+            {/* starting spaces */}
+            <div id="playerOneStart">
+              <div id="greenDice">
+                <Dice 
+                  id="greenDice"
+                  color="green"
+                  rollDoneCallback={this.rollDice}
+                />
+              </div>
+              <div id="playerOneBallOne" className="playerOneBallStart" onClick={this.playerStart} ></div>
+              <div id="playerOneBallTwo" className="playerOneBallStart" onClick={this.playerStart} ></div>
+              <div id="playerOneBallThree"className="playerOneBallStart" onClick={this.playerStart} ></div>
+              <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerStart} ></div>
             </div>
-            <div id="playerOneBallOne" className="playerOneBallStart" onClick={this.playerStart} ></div>
-            <div id="playerOneBallTwo" className="playerOneBallStart" onClick={this.playerStart} ></div>
-            <div id="playerOneBallThree"className="playerOneBallStart" onClick={this.playerStart} ></div>
-            <div id="playerOneBallFour" className="playerOneBallStart" onClick={this.playerStart} ></div>
-          </div>
-          <div id="playerTwoStart">
-            <div id="blueDice">
-              <Dice 
-                id="blueDice"
-                color="blue"
-                rollDoneCallback={this.rollDice}
-              />
+            <div id="playerTwoStart">
+              <div id="blueDice">
+                <Dice 
+                  id="blueDice"
+                  color="blue"
+                  rollDoneCallback={this.rollDice}
+                />
+              </div>
+              <div id="playerTwoBallOne" className="playerTwoBallStart" onClick={this.playerStart}></div>
+              <div id="playerTwoBallTwo" className="playerTwoBallStart" onClick={this.playerStart}></div>
+              <div id="playerTwoBallThree"className="playerTwoBallStart" onClick={this.playerStart}></div>
+              <div id="playerTwoBallFour" className="playerTwoBallStart" onClick={this.playerStart}></div>
             </div>
-            <div id="playerTwoBallOne" className="playerTwoBallStart" onClick={this.playerStart}></div>
-            <div id="playerTwoBallTwo" className="playerTwoBallStart" onClick={this.playerStart}></div>
-            <div id="playerTwoBallThree"className="playerTwoBallStart" onClick={this.playerStart}></div>
-            <div id="playerTwoBallFour" className="playerTwoBallStart" onClick={this.playerStart}></div>
-          </div>
-          <div id="playerThreeStart">
-            <div id="redDice">
-              <Dice 
-                id="redDice"
-                color="red"
-                rollDoneCallback={this.rollDice}
-              />
+            <div id="playerThreeStart">
+              <div id="redDice">
+                <Dice 
+                  id="redDice"
+                  color="red"
+                  rollDoneCallback={this.rollDice}
+                />
+              </div>
+              <div id="playerThreeBallOne" className="playerThreeBallStart" onClick={this.playerStart}></div>
+              <div id="playerThreeBallTwo" className="playerThreeBallStart" onClick={this.playerStart}></div>
+              <div id="playerThreeBallThree"className="playerThreeBallStart" onClick={this.playerStart}></div>
+              <div id="playerThreeBallFour" className="playerThreeBallStart" onClick={this.playerStart}></div>
             </div>
-            <div id="playerThreeBallOne" className="playerThreeBallStart" onClick={this.playerStart}></div>
-            <div id="playerThreeBallTwo" className="playerThreeBallStart" onClick={this.playerStart}></div>
-            <div id="playerThreeBallThree"className="playerThreeBallStart" onClick={this.playerStart}></div>
-            <div id="playerThreeBallFour" className="playerThreeBallStart" onClick={this.playerStart}></div>
-          </div>
-          <div id="playerFourStart">
-            <div id="yellowDice">
-              <Dice 
-                id="yellowDice"
-                color="yellow"
-                rollDoneCallback={this.rollDice}
-              />
+            <div id="playerFourStart">
+              <div id="yellowDice">
+                <Dice 
+                  id="yellowDice"
+                  color="yellow"
+                  rollDoneCallback={this.rollDice}
+                />
+              </div>
+              <div id="playerFourBallOne" className="playerFourBallStart" onClick={this.playerStart}></div>
+              <div id="playerFourBallTwo" className="playerFourBallStart" onClick={this.playerStart}></div>
+              <div id="playerFourBallThree"className="playerFourBallStart" onClick={this.playerStart}></div>
+              <div id="playerFourBallFour" className="playerFourBallStart" onClick={this.playerStart}></div>
             </div>
-            <div id="playerFourBallOne" className="playerFourBallStart" onClick={this.playerStart}></div>
-            <div id="playerFourBallTwo" className="playerFourBallStart" onClick={this.playerStart}></div>
-            <div id="playerFourBallThree"className="playerFourBallStart" onClick={this.playerStart}></div>
-            <div id="playerFourBallFour" className="playerFourBallStart" onClick={this.playerStart}></div>
+            {/* starting spaces end */}
+            <div id="middlePostion" className={'spaces'} onClick={this.moveAroundBoard}></div>
+            {/* spaces begin */}
+            {this.state.spaces}
+            {/* spaces end */}
           </div>
-          {/* starting spaces end */}
-          <div id="middlePostion" className={'spaces'} onClick={this.moveAroundBoard}></div>
-          {/* spaces begin */}
-          {this.state.spaces}
-          {/* spaces end */}
         </div>
-      </div>
+      </ThemeProvider>
     );
   }
 }

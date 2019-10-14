@@ -1,9 +1,9 @@
 import React from 'react';
-import MainAppBar from './components/MainAppBar';
+import MainAppBar from '../MainAppBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Game.css';
-import {spaces} from './spaces'
-import Dice from './components/Dice';
+import {spaces} from '../../spaces'
+import Dice from './Dice';
 
 const theme = createMuiTheme({
   palette: {

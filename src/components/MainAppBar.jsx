@@ -12,8 +12,12 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Info from '@material-ui/icons/Info';
+import ListIcon from '@material-ui/icons/List';
+import Book from '@material-ui/icons/Book';
+import VideoGameIcon from '@material-ui/icons/VideogameAsset'
+import {withRouter} from 'react-router-dom';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,12 +35,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MainAppBar() {
+function MainAppBar(props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
     left: false,
   });
+
+  const moveTo = (url) => {
+    console.log(url);
+    props.history.push(url);
+  }
   
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -51,23 +60,34 @@ export default function MainAppBar() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <List style={{
+            marginLeft: "5px"
+          }}>
+            {[{text: 'About', icon: <Info/>}, {text: 'Rules', icon: <Book/>}, {text: 'Game', icon: <VideoGameIcon/>}].map((listItem) => {
+              const link = listItem.text;
+
+              return (
+                <ListItem button key={listItem.text} onClick={() => moveTo(link)}>
+                  <ListItemIcon>{listItem.icon}</ListItemIcon>
+                  <ListItemText primary={listItem.text}/>
+                </ListItem>
+              )
+            })}
+          </List>
+        <Divider/>
+        <List style={{
+          marginLeft: "5px"
+        }}>
+          {[{text: 'Leaderboard', icon: <ListIcon/>}].map((listItem) => {
+            const link = listItem.text;
+            return (
+              <ListItem button key={listItem.text} onClick={() => moveTo(link)}>
+                <ListItemIcon>{listItem.icon}</ListItemIcon>
+                <ListItemText primary={listItem.text}/>
+              </ListItem>
+            )
+          })}
+        </List>
     </div>
     )
 
@@ -90,3 +110,5 @@ export default function MainAppBar() {
     </div>
   );
 }
+
+export default withRouter(MainAppBar);

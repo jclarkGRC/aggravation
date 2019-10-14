@@ -1,5 +1,4 @@
 import React from 'react';
-import MainAppBar from '../MainAppBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Game.css';
 import {spaces} from '../../spaces'
@@ -217,7 +216,6 @@ class Game extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="Table">
-          <MainAppBar/>
           <div className="GameBoard">
             {/* starting spaces */}
             <div id="playerOneStart">

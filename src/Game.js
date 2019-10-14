@@ -1,4 +1,5 @@
 import React from 'react';
+import MainAppBar from './components/MainAppBar';
 import './Game.css';
 import {spaces} from './spaces'
 import Dice from './components/Dice';
@@ -39,6 +40,12 @@ class Game extends React.Component {
   
   rollDice = (num) => {
     this.setState({playerRoll: num});
+  }
+
+  rolledASix = () => {
+    if(this.state.playerRoll === 6){
+      alert("You rolled a 6! You get to roll again!");
+    }
   }
 
   playerStart = (event) => {
@@ -92,14 +99,21 @@ class Game extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
             currentBall.classList.add('playerOneBall');
+            this.rolledASix();
             this.setState({count: 0, playerOneFirstMove: false});
           }
           else if(confirmation && !this.state.playerOneFirstMove){
             this.state.previousBall.classList.remove('playerOneBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerOneBall');
+            this.rolledASix();
             this.setState({count: 0});
-          }else{
+          }
+          else if(!confirmation){
+            this.state.previousBall.classList.remove('highlightBall');
+            this.setState({count: 0})
+          }
+          else{
             alert('You cant move here');
           }
         }
@@ -118,12 +132,14 @@ class Game extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('blueHome');
             currentBall.classList.add('playerTwoBall');
+            this.rolledASix();
             this.setState({count: 0, playerTwoFirstMove: false});
           }
           else if(confirmation && !this.state.playerTwoFirstMove){
             this.state.previousBall.classList.remove('playerTwoBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerTwoBall');
+            this.rolledASix();
             this.setState({count: 0});
           }else{
             alert('You cant move here');
@@ -144,12 +160,14 @@ class Game extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('redHome');
             currentBall.classList.add('playerThreeBall');
+            this.rolledASix();
             this.setState({count: 0, playerOneFirstMove: false});
           }
           else if(confirmation && !this.state.playerThreeFirstMove){
             this.state.previousBall.classList.remove('playerThreeBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerThreeBall');
+            this.rolledASix();
             this.setState({count: 0});
           }else{
             alert('You cant move here');
@@ -170,12 +188,14 @@ class Game extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('yellowHome');
             currentBall.classList.add('playerFourBall');
+            this.rolledASix();
             this.setState({count: 0, playerFourFirstMove: false});
           }
           else if(confirmation && !this.state.playerFourFirstMove){
             this.state.previousBall.classList.remove('playerFourBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerFourBall');
+            this.rolledASix();
             this.setState({count: 0});
           }else{
             alert('You cant move here');
@@ -188,6 +208,8 @@ class Game extends React.Component {
   render(){
     return (
       <div className="Table">
+        <MainAppBar/>
+
         <div className="GameBoard">
           {/* starting spaces */}
           <div id="playerOneStart">

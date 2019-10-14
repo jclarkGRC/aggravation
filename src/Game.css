@@ -3,17 +3,13 @@ body{
 }
 
 .GameBoard {
-  position: absolute;
-  text-align: center;
+  position: relative;
   background:  #654321;
   width: 821px;
   height: 821px;
-  top: 50%;
-  left: 50%;
-  margin-top: -410.5px;
-  margin-left: -410.5px;
   border: 2px solid black;
   border-radius: 15px;
+  margin: 0 auto;
 }
 
 .spaces{
@@ -82,6 +78,7 @@ body{
 }
 
 #playerOneStart{
+  position: relative;
   margin: 15px;
   height: 188px;
   width: 188px;
@@ -125,6 +122,7 @@ body{
 }
 
 #playerTwoStart{
+  position: relative;
   margin: 15px;
   height: 188px;
   width: 188px;
@@ -170,9 +168,9 @@ body{
   height: 188px;
   width: 188px;
   float: left;
+  margin: 15px;
   left: 0;
   bottom: 0;
-  margin: 15px;
 }
 
 #playerThreeBallOne{
@@ -245,26 +243,30 @@ body{
 
 #greenDice{
   position: absolute;
-  margin-top: 150px;
-  margin-left: 200px;
+  float: left;
+  bottom: 0;
+  margin-bottom: -15px
 }
 
 #blueDice{
   position: absolute;
-  margin-top: 150px;
-  margin-left: 1500px;
+  float: right;
+  bottom: 0;
+  right: 0;
+  margin-bottom: -15px;
 }
 
 #redDice{
   position: absolute;
-  margin-top: 700px;
-  margin-left: 200px;
+  float: left;
+  margin-top: -15px
 }
 
 #yellowDice{
   position: absolute;
-  margin-left: 1500px;
-  margin-top: 700px;
+  float: right;
+  right: 0;
+  margin-top: -15px
 }
 
 

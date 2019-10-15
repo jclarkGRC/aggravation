@@ -1,0 +1,12 @@
+.card-media{
+    height: 340px;
+}
+
+.card{
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.bodyDescription{
+    font-size: 15px;
+}

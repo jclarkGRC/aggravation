@@ -16,6 +16,10 @@ class About extends React.Component {
     this.props.history.push('Game');
   }
 
+  navigateToRules = () => {
+    this.props.history.push('Rules');
+  }
+
   render(){
     
     return (
@@ -42,7 +46,7 @@ class About extends React.Component {
               </Typography>
             </CardContent>
             <CardActions>
-            <Button size="large" color="white">
+            <Button onClick={this.navigateToRules} size="large" color="white">
               Learn how to play
             </Button>
             <Button onClick={this.navigateToGame} size="large" color="white">

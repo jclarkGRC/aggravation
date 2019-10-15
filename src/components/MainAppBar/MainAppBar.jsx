@@ -22,7 +22,7 @@ import {withRouter} from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: "50px"
+    marginBottom: "64px"
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -93,7 +93,7 @@ function MainAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />

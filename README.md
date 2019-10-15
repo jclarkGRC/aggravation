@@ -1,3 +1,7 @@
+#Aggravation: A fun marble game for all ages!
+
+Aggravation is a board game for up to four players and later versions for up to six players, whose object is to be the first player to have all four playing pieces (usually represented by marbles) reach the player's home section of the board. The game's name comes from the action of capturing an opponent's piece by landing on its space, which is known as "aggravating".
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

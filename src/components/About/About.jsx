@@ -28,10 +28,10 @@ class About extends React.Component {
               title="Aggravation Box"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography style={{textAlign: "center"}} className="title" gutterBottom variant="h5" component="h2">
                 What is Aggravation?
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Typography className="bodyDescription" variant="body1" color="textSecondary" component="p">
                 Aggravation is a board game for up to four players and later versions for up to six players, whose object is to be the first player to have all four playing pieces (usually represented by marbles) reach the player's home section of the board. The game's name comes from the action of capturing an opponent's piece by landing on its space, which is known as "aggravating".
                 <br/><br/>
                 Aggravation is one of the many variations of the game Pachisi. It was first produced in 1960 by CO-5 Company. Later versions were made by Minneapolis-based Lakeside Industries, a division of Leisure Dynamic. Today, it is manufactured by Winning Moves, under license from Hasbro.

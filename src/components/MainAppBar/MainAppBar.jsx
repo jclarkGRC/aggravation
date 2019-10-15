@@ -16,7 +16,7 @@ import Info from '@material-ui/icons/Info';
 import ListIcon from '@material-ui/icons/List';
 import Book from '@material-ui/icons/Book';
 import VideoGameIcon from '@material-ui/icons/VideogameAsset'
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +43,6 @@ function MainAppBar(props) {
   });
 
   const moveTo = (url) => {
-    console.log(url);
     props.history.push(url);
   }
   
@@ -101,7 +100,7 @@ function MainAppBar(props) {
           <Typography variant="h6" className={classes.title}>
             Aggravation:  A fun marble game for all ages
           </Typography>
-          <Button color="inherit">How To Play</Button>
+          <Button><Link style={{textDecoration: "none", color: "white"}} to="Rules">How To Play</Link></Button>
         </Toolbar>
       </AppBar>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

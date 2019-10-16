@@ -5,8 +5,7 @@ import Dice from './Dice';
 
 
 const gameboardWidth = 821
-const screenWidth = window.screen.width;
-let leftMargin = null;
+const screenWidth = window.screen.width
 let scaleRate = screenWidth / gameboardWidth
 
 if(scaleRate > 1) {
@@ -45,7 +44,7 @@ class GameBoard extends React.Component {
       previousBall: null,
       currentBall: null,
       count: 0,
-      leftMargin: 0
+      leftMargin: null
     }
 
     this.gameBoard = React.createRef();
@@ -224,11 +223,10 @@ class GameBoard extends React.Component {
   }
 
   componentDidMount(){
-    
     if(scaleRate < 1){
-    let transformedWidth = this.gameBoard.current.getBoundingClientRect().width;
-    leftMargin = -Math.abs(transformedWidth/2);
-    this.setState({leftMargin: leftMargin});
+    let transformedWidth = this.gameBoard.current.getBoundingClientRect().width; 
+    let leftMargin = (gameboardWidth - transformedWidth) / 2
+    this.setState({leftMargin: -Math.abs(leftMargin)});
     }else{
       //do nothing
     }
@@ -236,10 +234,11 @@ class GameBoard extends React.Component {
     
   render(){
 
+
     return (
         <div ref={this.gameBoard} className="GameBoard" style={{
           transform: `scale(${scaleRate})`,
-          marginLeft: leftMargin
+          marginLeft: this.state.leftMargin
         }}>
           {/* starting spaces */}
           <div id="playerOneStart">

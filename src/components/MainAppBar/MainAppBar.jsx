@@ -22,8 +22,7 @@ import {withRouter, Link} from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: "64px",
-    width: window.screen.width
+    marginBottom: "79px",
   },
   menuButton: {
     marginRight: theme.spacing(2),

@@ -4,7 +4,7 @@ body{
 }
 
 .GameBoard {
-  position: absolute;
+  position: relative;
   background:  #654321;
   width: 821px;
   height: 821px;

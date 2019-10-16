@@ -62,6 +62,9 @@ class GameBoard extends React.Component {
 
   playerStart = (event) => {
     let currentBall = event.target;
+    // If the player rolls a 1 or a 6 they can choose a starter
+    // ball to put into play as long as there isn't one in their 
+    // starting space currently.
     if(this.state.playerRoll === 6 || this.state.playerRoll === 1){
       if(currentBall.classList.contains('playerOneBallStart')){
         this.setState({playerOneFirstMove: true});
@@ -81,7 +84,10 @@ class GameBoard extends React.Component {
         this.setState({count: 1});
       }else{
         this.setState({count: 1});
-        alert("You cannot move here");
+        //alert("You cannot move here");
+        currentBall.classList.add('highlightBall');
+        this.state.previousBall.classList.remove('highlightBall');
+        this.setState({previousBall: currentBall});
       }
     }
     else if(this.state.count === 1){

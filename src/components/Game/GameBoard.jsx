@@ -95,6 +95,11 @@ class GameBoard extends React.Component {
 
   moveAroundBoard = (event) => {
     let currentBall = event.target;
+    console.log("current ball", currentBall);
+
+
+
+
     if(this.state.previousBall == null){
       alert('Roll a dice to begin playing');
     }else{

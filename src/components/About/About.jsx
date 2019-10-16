@@ -24,7 +24,7 @@ class About extends React.Component {
     
     return (
       <Grid container spacing={3}>
-        <Grid item xs={12} lg={12}> 
+        <Grid item xs={12} sm={12} lg={12}> 
           <Card className="card">
             <CardMedia
               className="card-media"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import Game from './components/Game/Game';
+import Game from './components/Game/GameBoard';
 import About from './components/About/About';
 import Rules from './components/Rules/Rules';
 import Leaderboard from './components/Leaderboard/Leaderboard'

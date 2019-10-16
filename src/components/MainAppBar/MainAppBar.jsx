@@ -22,7 +22,8 @@ import {withRouter, Link} from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: "64px"
+    marginBottom: "64px",
+    width: window.screen.width
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -92,13 +93,15 @@ function MainAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar style={{
+        position: "fixed"
+      }}>
         <Toolbar>
           <IconButton onClick={toggleDrawer('left', true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Aggravation:  A fun marble game for all ages
+            Aggravation: A fun marble game for all ages
           </Typography>
           <Button><Link style={{textDecoration: "none", color: "white"}} to="Rules">How To Play</Link></Button>
         </Toolbar>

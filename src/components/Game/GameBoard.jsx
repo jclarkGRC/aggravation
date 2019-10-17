@@ -57,14 +57,11 @@ class GameBoard extends React.Component {
       currentPlayer: "green",
       animationDuration: "0s"
     }
-
-    this.gameBoard = React.createRef();
   }
   
   rollDice = (num) => {
     this.setState({playerRoll: num});
     if(this.state.currentPlayer === "green"){
-      console.log("you rolled the green dice");
       if(this.state.playerOneBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
@@ -76,7 +73,6 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "blue"){
-      console.log("you rolled the blue dice");
       if(this.state.playerOneBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
@@ -88,7 +84,6 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "red"){
-      console.log("you rolled the red dice");
       if(this.state.playerOneBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
@@ -100,7 +95,6 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "yellow"){
-      console.log("you rolled the yellow dice");
       if(this.state.playerOneBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
@@ -378,10 +372,6 @@ class GameBoard extends React.Component {
       //this.setState({ currentPlayer: event.target.style.background });
       this.checkPlayerTurn(event.target.style.background);
     }
-
-
-
-
   };
 
   checkPlayerTurn = (playerElementBeingClicked) => {
@@ -391,14 +381,10 @@ class GameBoard extends React.Component {
   }
     
   render(){
-
-    console.log(this.state);
-
-
     return (
         <div>
         <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
-        <div ref={this.gameBoard} className="GameBoard" style={{
+        <div className="GameBoard" style={{
           transform: `scale(${scaleRate})`,
           marginLeft: this.state.leftMargin,
           marginTop: "10px"

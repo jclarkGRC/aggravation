@@ -298,6 +298,8 @@ class GameBoard extends React.Component {
   render(){
 
     return (
+        <div>
+        <div id="currentPlayer"><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
         <div ref={this.gameBoard} className="GameBoard" style={{
           transform: `scale(${scaleRate})`,
           marginLeft: this.state.leftMargin
@@ -372,6 +374,7 @@ class GameBoard extends React.Component {
           {/* spaces begin */}
           {this.state.spaces}
           {/* spaces end */}
+        </div>
         </div>
     );
   }

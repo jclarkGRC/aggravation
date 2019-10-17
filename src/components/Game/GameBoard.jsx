@@ -3,15 +3,13 @@ import './Game.css';
 import {spaces} from '../../spaces'
 import Dice from './Dice';
 
-
-const gameboardWidth = 821
-const screenWidth = window.screen.width
-let scaleRate = screenWidth / gameboardWidth
+const gameboardWidth = 821;
+const screenWidth = window.screen.width;
+let scaleRate = screenWidth / gameboardWidth;
 
 if(scaleRate > 1) {
   scaleRate = 1;
 }
-
 
 class GameBoard extends React.Component {
   
@@ -38,12 +36,20 @@ class GameBoard extends React.Component {
     this.state = {
       spaces: allSpaces,
       playerRoll: null,
-      playerOneFirstMove: true,
-      playerTwoFirstMove: true,
-      playerThreeFirstMove: true,
-      playerFourFirstMove: true,
+      playerOneFirstMove: false,
+      playerTwoFirstMove: false,
+      playerThreeFirstMove: false,
+      playerFourFirstMove: false,
+      playerOneBallsOnBoard: 0,
+      playerTwoBallsOnBoard: 0,
+      playerThreeBallsOnBoard: 0,
+      playerFourBallsOnBoard: 0,
+      numberOfRolls: 0,
+      greenDice: "block",
+      blueDice: "none",
+      redDice: "none",
+      yellowDice: "none",
       previousBall: null,
-      currentBall: null,
       count: 0,
       leftMargin: null,
       currentPlayer: "green"
@@ -53,7 +59,10 @@ class GameBoard extends React.Component {
   }
   
   rollDice = (num) => {
-    this.setState({playerRoll: num});
+      this.setState({
+        playerRoll: num,
+        numberOfRolls: this.state.numberOfRolls + 1
+      });
   }
 
   rolledASix = () => {
@@ -92,7 +101,6 @@ class GameBoard extends React.Component {
           this.setState({count: 1});
         }else{
           this.setState({count: 1});
-          //alert("You cannot move here");
           currentBall.classList.add('highlightBall');
           this.state.previousBall.classList.remove('highlightBall');
           this.setState({previousBall: currentBall});
@@ -126,11 +134,17 @@ class GameBoard extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
             currentBall.classList.add('playerOneBall');
-            this.setState({count: 0, playerOneFirstMove: false});
+            let numberOfBallsOnBoard = this.state.playerOneBallsOnBoard + 1
+            this.setState({count: 0, playerOneFirstMove: false, playerOneBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "blue"})
+              this.setState({
+                currentPlayer: "blue",
+                blueDice: "block",
+                greenDice: "none",
+                numberOfRolls:0
+              })
             }
           }
           else if(confirmation && !this.state.playerOneFirstMove && this.state.currentPlayer === "green"){
@@ -140,7 +154,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "blue"})
+              this.setState({
+                currentPlayer: "blue",
+                blueDice: "block",
+                greenDice: "none",
+                numberOfRolls: 0
+              })
             }
             this.setState({count: 0});
           }
@@ -171,7 +190,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "red"})
+              this.setState({
+                currentPlayer: "red",
+                redDice: "block",
+                blueDice: "none",
+                numberOfRolls: 0
+              })
             }
           }
           else if(confirmation && !this.state.playerTwoFirstMove && this.state.currentPlayer === "blue"){
@@ -182,7 +206,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "red"})
+              this.setState({
+                currentPlayer: "red",
+                redDice: "block",
+                blueDice: "none",
+                numberOfRolls: 0
+              })
             }
           }else{
             alert('You cant move here');
@@ -207,7 +236,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "yellow"})
+              this.setState({
+                currentPlayer: "yellow",
+                yellowDice: "block",
+                redDice: "none",
+                numberOfRolls: 0
+              })
             }
           }
           else if(confirmation && !this.state.playerThreeFirstMove && this.state.currentPlayer === "red"){
@@ -218,7 +252,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "yellow"})
+              this.setState({
+                currentPlayer: "yellow",
+                yellowDice: "block",
+                redDice: "none",
+                numberOfRolls: 0
+              })
             }
           }else{
             alert('You cant move here');
@@ -243,7 +282,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "green"})
+              this.setState({
+                currentPlayer: "green",
+                greenDice: "block",
+                yellowDice: "none",
+                numberOfRolls: 0
+              })
             }
           }
           else if(confirmation && !this.state.playerFourFirstMove && this.state.currentPlayer === "yellow"){
@@ -254,7 +298,12 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "green"})
+              this.setState({
+                currentPlayer: "green",
+                greenDice: "block",
+                yellowDice: "none",
+                numberOfRolls: 0
+              })
             }
           }else{
             alert('You cant move here');
@@ -272,6 +321,7 @@ class GameBoard extends React.Component {
     }else{
       //do nothing
     }
+    
   }
 
   getCurrentPlayer = (event) => {
@@ -281,13 +331,57 @@ class GameBoard extends React.Component {
     //and set the current player state to the dice color
     if (event.target.classList.contains('dot')) {
       //this.setState({ currentPlayer: event.target.parentElement.style.background });
-      this.checkPlayerTurn(event.target.parentElement.style.background)
+      this.checkPlayerTurn(event.target.parentElement.style.background);
+      this.playerCantMove(event.target.parentElement.style.background);
     }
     else {
       //this.setState({ currentPlayer: event.target.style.background });
       this.checkPlayerTurn(event.target.style.background);
+      this.playerCantMove(event.target.style.background);
     }
   };
+
+  playerCantMove = (event) => {
+    if(this.state.playerRoll !== 1 && this.state.playerRoll !== 6){
+      console.log("we got here");
+      if(event === "green"){
+        if(this.state.playerOneBallsOnBoard === 0){
+          this.setState({
+            currentPlayer: "blue",
+            greenDice: "none",
+            blueDice: "block"
+          })
+        }
+      }
+      if(event === "blue"){
+        if(this.state.playerTwoBallsOnBoard === 0){
+          this.setState({
+            currentPlayer: "red",
+            blueDice: "none",
+            redDice: "block"
+          })
+        }
+      }
+      if(event === "red"){
+        if(this.state.playerThreeBallsOnBoard === 0){
+          this.setState({
+            currentPlayer: "yellow",
+            redDice: "none",
+            yellowDice: "block"
+          })
+        }
+      }
+      if(event === "yellow"){
+        if(this.state.playerFourBallsOnBoard === 0){
+          this.setState({
+            currentPlayer: "green",
+            yellowDice: "none",
+            greenDice: "block"
+          })
+        }
+      }
+    }
+  }
 
   checkPlayerTurn = (playerElementBeingClicked) => {
     if(playerElementBeingClicked !== this.state.currentPlayer){
@@ -296,6 +390,8 @@ class GameBoard extends React.Component {
   }
     
   render(){
+
+    console.log(this.state);
 
     return (
         <div>
@@ -308,6 +404,9 @@ class GameBoard extends React.Component {
           <div id="playerOneStart">
             <div 
               id="greenDice"
+              style={{
+                display: this.state.greenDice
+              }}
               onClick={this.getCurrentPlayer}
             >
               <Dice 
@@ -324,6 +423,9 @@ class GameBoard extends React.Component {
           <div id="playerTwoStart">
             <div 
               id="blueDice"
+              style={{
+                display: this.state.blueDice
+              }}
               onClick={this.getCurrentPlayer}
             >
               <Dice 
@@ -340,6 +442,9 @@ class GameBoard extends React.Component {
           <div id="playerThreeStart">
             <div 
               id="redDice"
+              style={{
+                display: this.state.redDice
+              }}
               onClick={this.getCurrentPlayer}
             >
               <Dice 
@@ -356,6 +461,9 @@ class GameBoard extends React.Component {
           <div id="playerFourStart">
             <div 
               id="yellowDice"
+              style={{
+                display: this.state.yellowDice
+              }}
               onClick={this.getCurrentPlayer}
             >
               <Dice 

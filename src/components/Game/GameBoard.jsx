@@ -2,6 +2,8 @@ import React from 'react';
 import './Game.css';
 import {spaces} from '../../spaces'
 import Dice from './Dice';
+import ReactDice from 'react-dice-complete'
+import 'react-dice-complete/dist/react-dice-complete.css'
 
 const gameboardWidth = 821;
 const screenWidth = window.screen.width;
@@ -36,16 +38,16 @@ class GameBoard extends React.Component {
     this.state = {
       spaces: allSpaces,
       playerRoll: null,
-      playerOneFirstMove: false,
-      playerTwoFirstMove: false,
-      playerThreeFirstMove: false,
-      playerFourFirstMove: false,
+      playerOneFirstMove: true,
+      playerTwoFirstMove: true,
+      playerThreeFirstMove: true,
+      playerFourFirstMove: true,
       playerOneBallsOnBoard: 0,
       playerTwoBallsOnBoard: 0,
       playerThreeBallsOnBoard: 0,
       playerFourBallsOnBoard: 0,
       numberOfRolls: 0,
-      greenDice: "block",
+      greenDice: "all",
       blueDice: "none",
       redDice: "none",
       yellowDice: "none",
@@ -59,10 +61,32 @@ class GameBoard extends React.Component {
   }
   
   rollDice = (num) => {
-      this.setState({
-        playerRoll: num,
-        numberOfRolls: this.state.numberOfRolls + 1
-      });
+      this.setState({playerRoll: num});
+      if(this.state.currentPlayer === "green"){
+        console.log("you rolled the green dice");
+        this.setState({currentPlayer: "blue"})
+        this.setState({greenDice: "none"})
+        this.setState({blueDice: "all"})
+      }
+      else if(this.state.currentPlayer === "blue"){
+        console.log("you rolled the blue dice");
+        this.setState({currentPlayer: "red"})
+        this.setState({blueDice: "none"})
+        this.setState({redDice: "all"})
+      }
+      else if(this.state.currentPlayer === "red"){
+        console.log("you rolled the red dice");
+        this.setState({currentPlayer: "yellow"})
+        this.setState({redDice: "none"})
+        this.setState({yellowDice: "all"})
+      }
+      else if(this.state.currentPlayer === "yellow"){
+        console.log("you rolled the yellow dice");
+        this.setState({currentPlayer: "green"})
+        this.setState({yellowDice: "none"})
+        this.setState({greenDice: "all"})
+      }
+
   }
 
   rolledASix = () => {
@@ -138,10 +162,11 @@ class GameBoard extends React.Component {
             this.setState({count: 0, playerOneFirstMove: false, playerOneBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
-            }else{
+            }
+            else{
               this.setState({
                 currentPlayer: "blue",
-                blueDice: "block",
+                blueDice: "all",
                 greenDice: "none",
                 numberOfRolls:0
               })
@@ -156,7 +181,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "blue",
-                blueDice: "block",
+                blueDice: "all",
                 greenDice: "none",
                 numberOfRolls: 0
               })
@@ -192,7 +217,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "red",
-                redDice: "block",
+                redDice: "all",
                 blueDice: "none",
                 numberOfRolls: 0
               })
@@ -208,7 +233,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "red",
-                redDice: "block",
+                redDice: "all",
                 blueDice: "none",
                 numberOfRolls: 0
               })
@@ -238,7 +263,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "yellow",
-                yellowDice: "block",
+                yellowDice: "all",
                 redDice: "none",
                 numberOfRolls: 0
               })
@@ -254,7 +279,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "yellow",
-                yellowDice: "block",
+                yellowDice: "all",
                 redDice: "none",
                 numberOfRolls: 0
               })
@@ -284,7 +309,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "green",
-                greenDice: "block",
+                greenDice: "all",
                 yellowDice: "none",
                 numberOfRolls: 0
               })
@@ -300,7 +325,7 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "green",
-                greenDice: "block",
+                greenDice: "all",
                 yellowDice: "none",
                 numberOfRolls: 0
               })
@@ -332,56 +357,16 @@ class GameBoard extends React.Component {
     if (event.target.classList.contains('dot')) {
       //this.setState({ currentPlayer: event.target.parentElement.style.background });
       this.checkPlayerTurn(event.target.parentElement.style.background);
-      this.playerCantMove(event.target.parentElement.style.background);
     }
     else {
       //this.setState({ currentPlayer: event.target.style.background });
       this.checkPlayerTurn(event.target.style.background);
-      this.playerCantMove(event.target.style.background);
     }
-  };
 
-  playerCantMove = (event) => {
-    if(this.state.playerRoll !== 1 && this.state.playerRoll !== 6){
-      console.log("we got here");
-      if(event === "green"){
-        if(this.state.playerOneBallsOnBoard === 0){
-          this.setState({
-            currentPlayer: "blue",
-            greenDice: "none",
-            blueDice: "block"
-          })
-        }
-      }
-      if(event === "blue"){
-        if(this.state.playerTwoBallsOnBoard === 0){
-          this.setState({
-            currentPlayer: "red",
-            blueDice: "none",
-            redDice: "block"
-          })
-        }
-      }
-      if(event === "red"){
-        if(this.state.playerThreeBallsOnBoard === 0){
-          this.setState({
-            currentPlayer: "yellow",
-            redDice: "none",
-            yellowDice: "block"
-          })
-        }
-      }
-      if(event === "yellow"){
-        if(this.state.playerFourBallsOnBoard === 0){
-          this.setState({
-            currentPlayer: "green",
-            yellowDice: "none",
-            greenDice: "block"
-          })
-        }
-      }
-    }
-  }
+
+
+
+  };
 
   checkPlayerTurn = (playerElementBeingClicked) => {
     if(playerElementBeingClicked !== this.state.currentPlayer){
@@ -391,8 +376,6 @@ class GameBoard extends React.Component {
     
   render(){
 
-    console.log(this.state);
-
     return (
         <div>
         <div id="currentPlayer"><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
@@ -401,39 +384,35 @@ class GameBoard extends React.Component {
           marginLeft: this.state.leftMargin
         }}>
           {/* starting spaces */}
-          <div id="playerOneStart">
-            <div 
-              id="greenDice"
-              style={{
-                display: this.state.greenDice
-              }}
-              onClick={this.getCurrentPlayer}
-            >
-              <Dice 
+          <div id="playerOneStart">            
+              <div style={{
+                pointerEvents: this.state.greenDice
+              }}>
+              <ReactDice
                 id="greenDice"
-                color="green"
-                rollDoneCallback={this.rollDice}
+                numDice={1}
+                rollDone={this.rollDice}
+                ref={dice => this.greenDice = dice}
+                faceColor="green"
               />
-            </div>
+              </div>
             <div id="playerOneBallOne" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
             <div id="playerOneBallTwo" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
             <div id="playerOneBallThree"className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
             <div id="playerOneBallFour" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
           </div>
           <div id="playerTwoStart">
-            <div 
-              id="blueDice"
-              style={{
-                display: this.state.blueDice
-              }}
-              onClick={this.getCurrentPlayer}
-            >
-              <Dice 
+              <div style={{
+                  pointerEvents: this.state.blueDice
+              }}>
+              <ReactDice
                 id="blueDice"
-                color="blue"
-                rollDoneCallback={this.rollDice}
+                numDice={1}
+                rollDone={this.rollDice}
+                ref={dice => this.blueDice = dice}
+                faceColor="blue"
               />
-            </div>
+              </div>
             <div id="playerTwoBallOne" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
             <div id="playerTwoBallTwo" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
             <div id="playerTwoBallThree"className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
@@ -442,10 +421,10 @@ class GameBoard extends React.Component {
           <div id="playerThreeStart">
             <div 
               id="redDice"
-              style={{
-                display: this.state.redDice
-              }}
               onClick={this.getCurrentPlayer}
+              style={{
+                pointerEvents: this.state.redDice
+              }}
             >
               <Dice 
                 id="redDice"
@@ -461,10 +440,10 @@ class GameBoard extends React.Component {
           <div id="playerFourStart">
             <div 
               id="yellowDice"
-              style={{
-                display: this.state.yellowDice
-              }}
               onClick={this.getCurrentPlayer}
+              style={{
+                pointerEvents: this.state.yellowDice
+              }}
             >
               <Dice 
                 id="yellowDice"

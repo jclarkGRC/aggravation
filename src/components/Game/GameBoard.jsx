@@ -191,9 +191,8 @@ class GameBoard extends React.Component {
             else{
               this.setState({
                 currentPlayer: "blue",
-                blueDice: "block",
-                greenDice: "none",
-                numberOfRolls:0
+                blueDice: "visible",
+                greenDice: "hidden"
               })
             }
           }
@@ -206,9 +205,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "blue",
-                blueDice: "block",
-                greenDice: "none",
-                numberOfRolls: 0
+                blueDice: "visible",
+                greenDice: "hidden"
               })
             }
             this.setState({count: 0});
@@ -242,9 +240,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "red",
-                redDice: "block",
-                blueDice: "none",
-                numberOfRolls: 0
+                redDice: "visible",
+                blueDice: "hidden"
               })
             }
           }
@@ -258,9 +255,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "red",
-                redDice: "block",
-                blueDice: "none",
-                numberOfRolls: 0
+                redDice: "visible",
+                blueDice: "hidden"
               })
             }
           }else{
@@ -288,9 +284,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "yellow",
-                yellowDice: "block",
-                redDice: "none",
-                numberOfRolls: 0
+                yellowDice: "visible",
+                redDice: "hidden"
               })
             }
           }
@@ -304,9 +299,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "yellow",
-                yellowDice: "block",
-                redDice: "none",
-                numberOfRolls: 0
+                yellowDice: "visible",
+                redDice: "hidden"
               })
             }
           }else{
@@ -334,9 +328,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "green",
-                greenDice: "block",
-                yellowDice: "none",
-                numberOfRolls: 0
+                greenDice: "visible",
+                yellowDice: "hidden"
               })
             }
           }
@@ -350,9 +343,8 @@ class GameBoard extends React.Component {
             }else{
               this.setState({
                 currentPlayer: "green",
-                greenDice: "block",
-                yellowDice: "none",
-                numberOfRolls: 0
+                greenDice: "visible",
+                yellowDice: "hidden"
               })
             }
           }else{
@@ -405,10 +397,11 @@ class GameBoard extends React.Component {
 
     return (
         <div>
-        <div id="currentPlayer"><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
+        <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
         <div ref={this.gameBoard} className="GameBoard" style={{
           transform: `scale(${scaleRate})`,
-          marginLeft: this.state.leftMargin
+          marginLeft: this.state.leftMargin,
+          marginTop: "10px"
         }}>
           {/* starting spaces */}
           <div id="playerOneStart">            

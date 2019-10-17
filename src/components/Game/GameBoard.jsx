@@ -57,6 +57,8 @@ class GameBoard extends React.Component {
       currentPlayer: "green",
       animationDuration: "0s"
     }
+
+    this.gameBoard = React.createRef();
   }
   
   rollDice = (num) => {
@@ -384,7 +386,7 @@ class GameBoard extends React.Component {
     return (
         <div>
         <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
-        <div className="GameBoard" style={{
+        <div ref={this.gameBoard} className="GameBoard" style={{
           transform: `scale(${scaleRate})`,
           marginLeft: this.state.leftMargin,
           marginTop: "10px"

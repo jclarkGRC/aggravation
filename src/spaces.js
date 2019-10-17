@@ -4,6 +4,7 @@ export const spaces = [
         top: "263px",
         left: "15px",
         class: "greenHome",
+        ballcolor: "green",
         empty: true
     },
     {
@@ -88,6 +89,7 @@ export const spaces = [
         top: "15px",
         left: "511px",
         class: "blueHome",
+        ballcolor: "blue",
         empty: true
     },
     {
@@ -172,6 +174,7 @@ export const spaces = [
         top: "511px",
         left: "759px",
         class: "yellowHome",
+        ballcolor: "yellow",
         empty: true
     },
     {
@@ -256,6 +259,7 @@ export const spaces = [
         top: "759px",
         left: "263px",
         class: "redHome",
+        ballcolor: "red",
         empty: true
     },
     {

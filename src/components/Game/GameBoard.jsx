@@ -29,6 +29,7 @@ class GameBoard extends React.Component {
           marginLeft: space.left
         }}
         onClick={this.moveAroundBoard}
+        ballcolor={space.ballcolor}
       >
       </div>
       )
@@ -57,13 +58,15 @@ class GameBoard extends React.Component {
 
   rolledASix = () => {
     if(this.state.playerRoll === 6){
-      alert("You rolled a 6! You get to roll again!");
+      return true;
+    }
+    else{
+      return false;
     }
   }
 
   playerStart = (event) => {
     let currentBall = event.target;
-    console.log(currentBall.getAttribute('ballcolor'));
     if(currentBall.getAttribute('ballcolor') !== this.state.currentPlayer){
       alert("It is not your turn!\nIt is " + this.state.currentPlayer + "'s turn.")
     }else{
@@ -106,8 +109,6 @@ class GameBoard extends React.Component {
 
   moveAroundBoard = (event) => {
     let currentBall = event.target;
-    console.log("current ball", currentBall);
-
     if(this.state.previousBall == null){
       alert('Roll a dice to begin playing');
     }else{
@@ -120,19 +121,27 @@ class GameBoard extends React.Component {
         }
         if(this.state.count === 1){
           let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome')){
+          if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome') && this.state.currentPlayer === "green"){
             this.state.previousBall.classList.remove('playerOneBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
             currentBall.classList.add('playerOneBall');
-            this.rolledASix();
             this.setState({count: 0, playerOneFirstMove: false});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "red"})
+            }
           }
-          else if(confirmation && !this.state.playerOneFirstMove){
+          else if(confirmation && !this.state.playerOneFirstMove && this.state.currentPlayer === "green"){
             this.state.previousBall.classList.remove('playerOneBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerOneBall');
-            this.rolledASix();
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "red"})
+            }
             this.setState({count: 0});
           }
           else if(!confirmation){
@@ -264,6 +273,8 @@ class GameBoard extends React.Component {
 
     
   render(){
+
+    console.log(this.state);
 
     return (
         <div ref={this.gameBoard} className="GameBoard" style={{

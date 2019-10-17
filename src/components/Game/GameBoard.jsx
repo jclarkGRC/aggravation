@@ -63,10 +63,20 @@ class GameBoard extends React.Component {
   rollDice = (num) => {
       this.setState({playerRoll: num});
       if(this.state.currentPlayer === "green"){
-        console.log("you rolled the green dice");
-        this.setState({currentPlayer: "blue"})
-        this.setState({greenDice: "none"})
-        this.setState({blueDice: "all"})
+        console.log("you rolled the green dice and got a: " + this.state.playerRoll);
+        if(this.state.playerOneBallsOnBoard === 0){
+          if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
+            this.setState({currentPlayer: "blue"})
+            this.setState({greenDice: "none"})
+            this.setState({blueDice: "all"})
+          }
+          else if(this.state.playerRoll === 6){
+            console.log("you got a six");
+          }
+          else if(this.state.playerRoll === 1){
+            console.log("you got a one")
+          }
+        }
       }
       else if(this.state.currentPlayer === "blue"){
         console.log("you rolled the blue dice");
@@ -385,7 +395,9 @@ class GameBoard extends React.Component {
         }}>
           {/* starting spaces */}
           <div id="playerOneStart">            
-              <div style={{
+              <div 
+              id="greenDice"
+              style={{
                 pointerEvents: this.state.greenDice
               }}>
               <ReactDice
@@ -402,7 +414,9 @@ class GameBoard extends React.Component {
             <div id="playerOneBallFour" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
           </div>
           <div id="playerTwoStart">
-              <div style={{
+              <div 
+              id="blueDice"
+              style={{
                   pointerEvents: this.state.blueDice
               }}>
               <ReactDice

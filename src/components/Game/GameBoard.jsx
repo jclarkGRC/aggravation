@@ -130,7 +130,7 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "red"})
+              this.setState({currentPlayer: "blue"})
             }
           }
           else if(confirmation && !this.state.playerOneFirstMove && this.state.currentPlayer === "green"){
@@ -140,7 +140,7 @@ class GameBoard extends React.Component {
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }else{
-              this.setState({currentPlayer: "red"})
+              this.setState({currentPlayer: "blue"})
             }
             this.setState({count: 0});
           }
@@ -162,20 +162,28 @@ class GameBoard extends React.Component {
         }
         if(this.state.count === 1){
           let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerTwoFirstMove && currentBall.classList.contains('blueHome')){
+          if(confirmation && this.state.playerTwoFirstMove && currentBall.classList.contains('blueHome') && this.state.currentPlayer === "blue"){
             this.state.previousBall.classList.remove('playerTwoBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('blueHome');
             currentBall.classList.add('playerTwoBall');
-            this.rolledASix();
             this.setState({count: 0, playerTwoFirstMove: false});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "red"})
+            }
           }
-          else if(confirmation && !this.state.playerTwoFirstMove){
+          else if(confirmation && !this.state.playerTwoFirstMove && this.state.currentPlayer === "blue"){
             this.state.previousBall.classList.remove('playerTwoBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerTwoBall');
-            this.rolledASix();
             this.setState({count: 0});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "red"})
+            }
           }else{
             alert('You cant move here');
           }
@@ -190,20 +198,28 @@ class GameBoard extends React.Component {
         }
         if(this.state.count === 1){
           let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerThreeFirstMove && currentBall.classList.contains('redHome')){
+          if(confirmation && this.state.playerThreeFirstMove && currentBall.classList.contains('redHome') && this.state.currentPlayer === "red"){
             this.state.previousBall.classList.remove('playerThreeBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('redHome');
             currentBall.classList.add('playerThreeBall');
-            this.rolledASix();
             this.setState({count: 0, playerOneFirstMove: false});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "yellow"})
+            }
           }
-          else if(confirmation && !this.state.playerThreeFirstMove){
+          else if(confirmation && !this.state.playerThreeFirstMove && this.state.currentPlayer === "red"){
             this.state.previousBall.classList.remove('playerThreeBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerThreeBall');
-            this.rolledASix();
             this.setState({count: 0});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "yellow"})
+            }
           }else{
             alert('You cant move here');
           }
@@ -218,20 +234,28 @@ class GameBoard extends React.Component {
         }
         if(this.state.count === 1){
           let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerFourFirstMove && currentBall.classList.contains('yellowHome')){
+          if(confirmation && this.state.playerFourFirstMove && currentBall.classList.contains('yellowHome') && this.state.currentPlayer === "yellow"){
             this.state.previousBall.classList.remove('playerFourBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('yellowHome');
             currentBall.classList.add('playerFourBall');
-            this.rolledASix();
             this.setState({count: 0, playerFourFirstMove: false});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "green"})
+            }
           }
-          else if(confirmation && !this.state.playerFourFirstMove){
+          else if(confirmation && !this.state.playerFourFirstMove && this.state.currentPlayer === "yellow"){
             this.state.previousBall.classList.remove('playerFourBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerFourBall');
-            this.rolledASix();
             this.setState({count: 0});
+            if(this.rolledASix()){
+              alert("You rolled a 6! You get to roll again!");
+            }else{
+              this.setState({currentPlayer: "green"})
+            }
           }else{
             alert('You cant move here');
           }
@@ -270,11 +294,8 @@ class GameBoard extends React.Component {
       alert("It is not your turn to play!\nIt is " + this.state.currentPlayer + "'s turn.");
     }
   }
-
     
   render(){
-
-    console.log(this.state);
 
     return (
         <div ref={this.gameBoard} className="GameBoard" style={{

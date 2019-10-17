@@ -62,80 +62,56 @@ class GameBoard extends React.Component {
   }
   
   rollDice = (num) => {
-      this.setState({playerRoll: num});
-      if(this.state.currentPlayer === "green"){
-        console.log("you rolled the green dice");
-        if(this.state.playerOneBallsOnBoard === 0){
-          if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
-            this.setState({
-              currentPlayer: "blue",
-              greenDice: "hidden",
-              blueDice: "visible"
-            })
-          }
-          else if(this.state.playerRoll === 6){
-            //console.log("you got a six");
-          }
-          else if(this.state.playerRoll === 1){
-            //console.log("you got a one")
-          }
+    this.setState({playerRoll: num});
+    if(this.state.currentPlayer === "green"){
+      console.log("you rolled the green dice");
+      if(this.state.playerOneBallsOnBoard === 0){
+        if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
+          this.setState({
+            currentPlayer: "blue",
+            greenDice: "hidden",
+            blueDice: "visible"
+          })
         }
       }
-      else if(this.state.currentPlayer === "blue"){
-        console.log("you rolled the blue dice");
-        if(this.state.playerOneBallsOnBoard === 0){
-          if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
-            this.setState({
-              currentPlayer: "red",
-              blueDice: "hidden",
-              redDice: "visible" 
-            })
-          }
-          else if(this.state.playerRoll === 6){
-            //console.log("you got a six");
-          }
-          else if(this.state.playerRoll === 1){
-            //console.log("you got a one")
-          }
+    }
+    else if(this.state.currentPlayer === "blue"){
+      console.log("you rolled the blue dice");
+      if(this.state.playerOneBallsOnBoard === 0){
+        if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
+          this.setState({
+            currentPlayer: "red",
+            blueDice: "hidden",
+            redDice: "visible" 
+          })
         }
       }
-      else if(this.state.currentPlayer === "red"){
-        console.log("you rolled the red dice");
-        if(this.state.playerOneBallsOnBoard === 0){
-          if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
-            this.setState({
-              currentPlayer: "yellow",
-              redDice: "hidden",
-              yellowDice: "visible"
-            })
-          }
-          else if(this.state.playerRoll === 6){
-            //console.log("you got a six");
-          }
-          else if(this.state.playerRoll === 1){
-            //console.log("you got a one")
-          }
+    }
+    else if(this.state.currentPlayer === "red"){
+      console.log("you rolled the red dice");
+      if(this.state.playerOneBallsOnBoard === 0){
+        if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
+          this.setState({
+            currentPlayer: "yellow",
+            redDice: "hidden",
+            yellowDice: "visible"
+          })
         }
       }
-      else if(this.state.currentPlayer === "yellow"){
-        console.log("you rolled the yellow dice");
-        if(this.state.playerOneBallsOnBoard === 0){
-          if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
-            this.setState({
-              currentPlayer: "green",
-              yellowDice: "hidden",
-              greenDice: "visible",
-              roundComplete: true
-            })
-          }
-          else if(this.state.playerRoll === 6){
-            //console.log("you got a six");
-          }
-          else if(this.state.playerRoll === 1){
-            //console.log("you got a one")
-          }
+    }
+    else if(this.state.currentPlayer === "yellow"){
+      console.log("you rolled the yellow dice");
+      if(this.state.playerOneBallsOnBoard === 0){
+        if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
+          this.setState({
+            currentPlayer: "green",
+            yellowDice: "hidden",
+            greenDice: "visible",
+            roundComplete: true
+          })
         }
       }
+    }
   }
 
   rolledASix = () => {

@@ -467,8 +467,6 @@ class GameBoard extends React.Component {
     
   render(){
 
-    console.log(this.state);
-
     return (
         <div>
           <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>

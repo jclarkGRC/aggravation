@@ -162,6 +162,7 @@ class GameBoard extends React.Component {
 
   moveAroundBoard = (event) => {
     let currentBall = event.target;
+    let numberOfBallsOnBoard
     if(this.state.previousBall == null){
       alert('Roll a dice to begin playing');
     }else{
@@ -179,12 +180,21 @@ class GameBoard extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
             currentBall.classList.add('playerOneBall');
-            //let numberOfBallsOnBoard = this.state.playerOneBallsOnBoard + 1
-            this.setState({count: 0, playerOneFirstMove: false});
+            numberOfBallsOnBoard = this.state.playerOneBallsOnBoard + 1;
+            this.setState({count: 0, playerOneFirstMove: false, playerOneBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
             }
-            else{
+            else if(this.state.playerOneBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerOneBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerOneBall');
+              this.setState({
+                currentPlayer: "blue",
+                blueDice: "visible",
+                greenDice: "hidden"
+              })
+            }else{
               this.setState({
                 currentPlayer: "blue",
                 blueDice: "visible",
@@ -198,6 +208,16 @@ class GameBoard extends React.Component {
             currentBall.classList.add('playerOneBall');
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerOneBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerOneBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerOneBall');
+              this.setState({
+                currentPlayer: "blue",
+                blueDice: "visible",
+                greenDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "blue",
@@ -230,9 +250,20 @@ class GameBoard extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('blueHome');
             currentBall.classList.add('playerTwoBall');
-            this.setState({count: 0, playerTwoFirstMove: false});
+            numberOfBallsOnBoard = this.state.playerTwoBallsOnBoard + 1;
+            this.setState({count: 0, playerTwoFirstMove: false, playerTwoBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerTwoBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerTwoBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerTwoBall');
+              this.setState({
+                currentPlayer: "red",
+                redDice: "visible",
+                blueDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "red",
@@ -248,6 +279,16 @@ class GameBoard extends React.Component {
             this.setState({count: 0});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerTwoBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerTwoBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerTwoBall');
+              this.setState({
+                currentPlayer: "red",
+                redDice: "visible",
+                blueDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "red",
@@ -274,9 +315,20 @@ class GameBoard extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('redHome');
             currentBall.classList.add('playerThreeBall');
-            this.setState({count: 0, playerOneFirstMove: false});
+            numberOfBallsOnBoard = this.state.playerThreeBallsOnBoard + 1;
+            this.setState({count: 0, playerOneFirstMove: false, playerThreeBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerThreeBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerThreeBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerThreeBall');
+              this.setState({
+                currentPlayer: "yellow",
+                yellowDice: "visible",
+                redDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "yellow",
@@ -292,6 +344,16 @@ class GameBoard extends React.Component {
             this.setState({count: 0});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerThreeBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerThreeBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerThreeBall');
+              this.setState({
+                currentPlayer: "yellow",
+                yellowDice: "visible",
+                redDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "yellow",
@@ -318,9 +380,20 @@ class GameBoard extends React.Component {
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('yellowHome');
             currentBall.classList.add('playerFourBall');
-            this.setState({count: 0, playerFourFirstMove: false});
+            numberOfBallsOnBoard = this.state.playerFourBallsOnBoard + 1;
+            this.setState({count: 0, playerFourFirstMove: false, playerFourBallsOnBoard: numberOfBallsOnBoard});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerFourBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerFourBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerFourBall');
+              this.setState({
+                currentPlayer: "green",
+                greenDice: "visible",
+                yellowDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "green",
@@ -336,6 +409,16 @@ class GameBoard extends React.Component {
             this.setState({count: 0});
             if(this.rolledASix()){
               alert("You rolled a 6! You get to roll again!");
+            }
+            else if(this.state.playerFourBallsOnBoard > 0){
+              this.state.previousBall.classList.remove('playerFourBall');
+              this.state.previousBall.classList.remove('highlightBall');
+              currentBall.classList.add('playerFourBall');
+              this.setState({
+                currentPlayer: "green",
+                greenDice: "visible",
+                yellowDice: "hidden"
+              })
             }else{
               this.setState({
                 currentPlayer: "green",
@@ -383,97 +466,100 @@ class GameBoard extends React.Component {
   }
     
   render(){
+
+    console.log(this.state);
+
     return (
         <div>
-        <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
-        <div ref={this.gameBoard} className="GameBoard" style={{
-          transform: `scale(${scaleRate})`,
-          marginLeft: this.state.leftMargin,
-          marginTop: "10px"
-        }}>
-          {/* starting spaces */}
-          <div id="playerOneStart">            
-              <div 
-              id="greenDice"
-              style={{
-                visibility: this.state.greenDice,
-              }}>
-              <ReactDice
+          <div id="currentPlayer" style={{margin: "0 auto"}}><h1> The current player is: <span style={{color:this.state.currentPlayer}}>{this.state.currentPlayer}</span></h1></div>
+          <div ref={this.gameBoard} className="GameBoard" style={{
+            transform: `scale(${scaleRate})`,
+            marginLeft: this.state.leftMargin,
+            marginTop: "10px"
+          }}>
+            {/* starting spaces */}
+            <div id="playerOneStart">            
+                <div 
                 id="greenDice"
-                numDice={1}
-                rollDone={this.rollDice}
-                ref={dice => this.greenDice = dice}
-                faceColor="green"
-              />
-              </div>
-            <div id="playerOneBallOne" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
-            <div id="playerOneBallTwo" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
-            <div id="playerOneBallThree"className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
-            <div id="playerOneBallFour" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
-          </div>
-          <div id="playerTwoStart">
-              <div 
-              id="blueDice"
-              style={{
-                  visibility: this.state.blueDice
-              }}>
-              <ReactDice
-                id="blueDice"
-                numDice={1}
-                rollDone={this.rollDice}
-                ref={dice => this.blueDice = dice}
-                faceColor="blue"
-              />
-              </div>
-            <div id="playerTwoBallOne" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
-            <div id="playerTwoBallTwo" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
-            <div id="playerTwoBallThree"className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
-            <div id="playerTwoBallFour" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
-          </div>
-          <div id="playerThreeStart">
-          <div 
-              id="redDice"
-              style={{
-                visibility: this.state.redDice
-              }}>
-              <ReactDice
-                id="redDice"
-                numDice={1}
-                rollDone={this.rollDice}
-                ref={dice => this.redDice = dice}
-                faceColor="red"
-              />
-              </div>
-            <div id="playerThreeBallOne" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
-            <div id="playerThreeBallTwo" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
-            <div id="playerThreeBallThree"className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
-            <div id="playerThreeBallFour" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
-          </div>
-          <div id="playerFourStart">
-          <div 
-              id="yellowDice"
-              style={{
-                visibility: this.state.yellowDice
-              }}>
-              <ReactDice
-                id="yellowDice"
-                numDice={1}
-                rollDone={this.rollDice}
-                ref={dice => this.yellowDice = dice}
-                faceColor="yellow"
-              />
+                style={{
+                  visibility: this.state.greenDice,
+                }}>
+                <ReactDice
+                  id="greenDice"
+                  numDice={1}
+                  rollDone={this.rollDice}
+                  ref={dice => this.greenDice = dice}
+                  faceColor="green"
+                />
+                </div>
+              <div id="playerOneBallOne" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
+              <div id="playerOneBallTwo" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
+              <div id="playerOneBallThree"className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
+              <div id="playerOneBallFour" className="playerOneBallStart" ballcolor="green" onClick={this.playerStart} ></div>
             </div>
-            <div id="playerFourBallOne" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
-            <div id="playerFourBallTwo" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
-            <div id="playerFourBallThree"className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
-            <div id="playerFourBallFour" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
+            <div id="playerTwoStart">
+                <div 
+                id="blueDice"
+                style={{
+                    visibility: this.state.blueDice
+                }}>
+                <ReactDice
+                  id="blueDice"
+                  numDice={1}
+                  rollDone={this.rollDice}
+                  ref={dice => this.blueDice = dice}
+                  faceColor="blue"
+                />
+                </div>
+              <div id="playerTwoBallOne" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
+              <div id="playerTwoBallTwo" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
+              <div id="playerTwoBallThree"className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
+              <div id="playerTwoBallFour" className="playerTwoBallStart" ballcolor="blue" onClick={this.playerStart}></div>
+            </div>
+            <div id="playerThreeStart">
+            <div 
+                id="redDice"
+                style={{
+                  visibility: this.state.redDice
+                }}>
+                <ReactDice
+                  id="redDice"
+                  numDice={1}
+                  rollDone={this.rollDice}
+                  ref={dice => this.redDice = dice}
+                  faceColor="red"
+                />
+                </div>
+              <div id="playerThreeBallOne" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
+              <div id="playerThreeBallTwo" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
+              <div id="playerThreeBallThree"className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
+              <div id="playerThreeBallFour" className="playerThreeBallStart" ballcolor="red" onClick={this.playerStart}></div>
+            </div>
+            <div id="playerFourStart">
+            <div 
+                id="yellowDice"
+                style={{
+                  visibility: this.state.yellowDice
+                }}>
+                <ReactDice
+                  id="yellowDice"
+                  numDice={1}
+                  rollDone={this.rollDice}
+                  ref={dice => this.yellowDice = dice}
+                  faceColor="yellow"
+                />
+              </div>
+              <div id="playerFourBallOne" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
+              <div id="playerFourBallTwo" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
+              <div id="playerFourBallThree"className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
+              <div id="playerFourBallFour" className="playerFourBallStart" ballcolor="yellow" onClick={this.playerStart}></div>
+            </div>
+            {/* starting spaces end */}
+            <div id="middlePostion" className={'spaces'} onClick={this.moveAroundBoard}></div>
+            {/* spaces begin */}
+            {this.state.spaces}
+            {/* spaces end */}
           </div>
-          {/* starting spaces end */}
-          <div id="middlePostion" className={'spaces'} onClick={this.moveAroundBoard}></div>
-          {/* spaces begin */}
-          {this.state.spaces}
-          {/* spaces end */}
-        </div>
         </div>
     );
   }

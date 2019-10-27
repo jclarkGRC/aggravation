@@ -75,7 +75,7 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "blue"){
-      if(this.state.playerOneBallsOnBoard === 0){
+      if(this.state.playerTwoBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
             currentPlayer: "red",
@@ -86,7 +86,7 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "red"){
-      if(this.state.playerOneBallsOnBoard === 0){
+      if(this.state.playerThreeBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
             currentPlayer: "yellow",
@@ -97,7 +97,7 @@ class GameBoard extends React.Component {
       }
     }
     else if(this.state.currentPlayer === "yellow"){
-      if(this.state.playerOneBallsOnBoard === 0){
+      if(this.state.playerFourBallsOnBoard === 0){
         if((this.state.playerRoll >= 2) && (this.state.playerRoll <= 5)){
           this.setState({
             currentPlayer: "green",
@@ -466,6 +466,8 @@ class GameBoard extends React.Component {
   }
     
   render(){
+
+    console.log(this.state);
 
     return (
         <div>

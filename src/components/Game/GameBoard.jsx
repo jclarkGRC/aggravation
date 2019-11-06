@@ -158,7 +158,7 @@ class GameBoard extends React.Component {
         alert("You must roll a 6 or a 1 to start playing!");
       }
     }
-  }
+  };
 
   moveAroundBoard = (event) => {
     let currentBall = event.target;
@@ -174,8 +174,8 @@ class GameBoard extends React.Component {
           this.setState({count: 1});
         }
         if(this.state.count === 1){
-          let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerOneFirstMove && currentBall.classList.contains('greenHome') && this.state.currentPlayer === "green"){
+          //let confirmation = window.confirm("Would you like to make this move?");
+          if(this.state.playerOneFirstMove && currentBall.classList.contains('greenHome') && this.state.currentPlayer === "green"){
             this.state.previousBall.classList.remove('playerOneBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('greenHome');
@@ -202,7 +202,7 @@ class GameBoard extends React.Component {
               })
             }
           }
-          else if(confirmation && !this.state.playerOneFirstMove && this.state.currentPlayer === "green"){
+          else if(!this.state.playerOneFirstMove && this.state.currentPlayer === "green"){
             this.state.previousBall.classList.remove('playerOneBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerOneBall');
@@ -227,10 +227,10 @@ class GameBoard extends React.Component {
             }
             this.setState({count: 0});
           }
-          else if(!confirmation){
-            this.state.previousBall.classList.remove('highlightBall');
-            this.setState({count: 0})
-          }
+          // else if(!confirmation){
+          //   this.state.previousBall.classList.remove('highlightBall');
+          //   this.setState({count: 0})
+          // }
           else{
             alert('You cant move here');
           }
@@ -244,8 +244,8 @@ class GameBoard extends React.Component {
           this.setState({count: 1});
         }
         if(this.state.count === 1){
-          let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerTwoFirstMove && currentBall.classList.contains('blueHome') && this.state.currentPlayer === "blue"){
+          //let confirmation = window.confirm("Would you like to make this move?");
+          if(this.state.playerTwoFirstMove && currentBall.classList.contains('blueHome') && this.state.currentPlayer === "blue"){
             this.state.previousBall.classList.remove('playerTwoBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('blueHome');
@@ -272,7 +272,7 @@ class GameBoard extends React.Component {
               })
             }
           }
-          else if(confirmation && !this.state.playerTwoFirstMove && this.state.currentPlayer === "blue"){
+          else if(!this.state.playerTwoFirstMove && this.state.currentPlayer === "blue"){
             this.state.previousBall.classList.remove('playerTwoBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerTwoBall');
@@ -309,8 +309,8 @@ class GameBoard extends React.Component {
           this.setState({count: 1});
         }
         if(this.state.count === 1){
-          let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerThreeFirstMove && currentBall.classList.contains('redHome') && this.state.currentPlayer === "red"){
+          //let confirmation = window.confirm("Would you like to make this move?");
+          if(this.state.playerThreeFirstMove && currentBall.classList.contains('redHome') && this.state.currentPlayer === "red"){
             this.state.previousBall.classList.remove('playerThreeBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('redHome');
@@ -337,7 +337,7 @@ class GameBoard extends React.Component {
               })
             }
           }
-          else if(confirmation && !this.state.playerThreeFirstMove && this.state.currentPlayer === "red"){
+          else if(!this.state.playerThreeFirstMove && this.state.currentPlayer === "red"){
             this.state.previousBall.classList.remove('playerThreeBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerThreeBall');
@@ -374,8 +374,8 @@ class GameBoard extends React.Component {
           this.setState({count: 1});
         }
         if(this.state.count === 1){
-          let confirmation = window.confirm("Would you like to make this move?");
-          if(confirmation && this.state.playerFourFirstMove && currentBall.classList.contains('yellowHome') && this.state.currentPlayer === "yellow"){
+          //let confirmation = window.confirm("Would you like to make this move?");
+          if(this.state.playerFourFirstMove && currentBall.classList.contains('yellowHome') && this.state.currentPlayer === "yellow"){
             this.state.previousBall.classList.remove('playerFourBallStart');
             this.state.previousBall.classList.remove('highlightBall');
             this.state.previousBall.classList.add('yellowHome');
@@ -402,7 +402,7 @@ class GameBoard extends React.Component {
               })
             }
           }
-          else if(confirmation && !this.state.playerFourFirstMove && this.state.currentPlayer === "yellow"){
+          else if(!this.state.playerFourFirstMove && this.state.currentPlayer === "yellow"){
             this.state.previousBall.classList.remove('playerFourBall');
             this.state.previousBall.classList.remove('highlightBall');
             currentBall.classList.add('playerFourBall');
@@ -432,15 +432,13 @@ class GameBoard extends React.Component {
         }
       }
     }
-  }
+  };
 
   componentDidMount(){
     if(scaleRate < 1){
     let transformedWidth = this.gameBoard.current.getBoundingClientRect().width; 
-    let leftMargin = (gameboardWidth - transformedWidth) / 2
+    let leftMargin = (gameboardWidth - transformedWidth) / 2;
     this.setState({leftMargin: -Math.abs(leftMargin)});
-    }else{
-      //do nothing
     }
   }
 
